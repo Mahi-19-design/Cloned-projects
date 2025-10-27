@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trump escalates back-and-forth with Colombia's president - CNN</title>
+    <style>
+        /*
+        ---------------------------------------------------------
+        CSS Styles for CNN Mockup
+        ---------------------------------------------------------
+        */
+
+        :root {
+            --cnn-red: #CC0000;
+            --cnn-dark: #000000;
+            --cnn-gray-text: #A6A6A6;
+            --cnn-light-text: #F0F0F0;
+            --max-content-width: 1000px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Arial', sans-serif; /* Fallback font */
+            margin: 0;
+            padding: 0;
+            color: var(--cnn-dark);
+            background-color: #FFFFFF;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* 1. Navbar Styles */
+        .navbar {
+            background-color: var(--cnn-dark);
+            color: var(--cnn-light-text);
+            padding: 10px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-content {
+            max-width: var(--max-content-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 20px;
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            font-size: 13px;
+        }
+
+        .nav-right .icon-link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        /* Placeholder for Icons */
+        .icon-link::before {
+            content: '•';
+            font-size: 18px;
+            line-height: 0;
+        }
+        .nav-right .icon-link:last-child::before {
+            content: '🔍'; /* Search icon placeholder */
+            font-size: 16px;
+        }
+
+
+        /* 2. Article Content Styles */
+        .article-container {
+            max-width: var(--max-content-width);
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article-metadata {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Headline with Red Bar */
+        .headline-wrapper {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .red-bar {
+            width: 8px;
+            height: 100%;
+            background-color: var(--cnn-red);
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        h1 {
+            font-family: 'Georgia', serif; /* Simulating the bold serif headline */
+            font-size: 55px;
+            line-height: 1.05;
+            font-weight: 900;
+            margin: 0;
+        }
+        
+        /* Article Byline/Date */
+        .byline-date {
+            margin-top: 15px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            padding-left: 23px; /* Align with text after the red bar */
+        }
+        .byline-date .date {
+            color: #555;
+            margin-right: 15px;
+        }
+        .byline-date .author-name {
+            font-weight: bold;
+            border-bottom: 1px solid #000;
+            cursor: pointer;
+        }
+
+        /* Social Share Icons Placeholder */
+        .social-share {
+            padding-left: 23px;
+            margin-bottom: 40px;
+            font-size: 24px;
+            color: #666;
+        }
+        .social-share span {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+
+        /* Article Body Text */
+        .article-body-content {
+            max-width: 700px; /* Narrower column for readability */
+            margin: 0 0 0 23px;
+            font-family: 'Georgia', serif; 
+            font-size: 19px;
+            line-height: 1.6;
+            
+        }
+
+        .article-body-content p {
+            margin-bottom: 25px;
+        }
+
+        .article-body-content strong {
+            font-weight: bold;
+        }
+
+        .article-body-content a {
+            text-decoration: underline;
+            font-style: italic;
+        }
+        
+        /* Paragraph Spacing for quotes */
+        .article-body-content p.quote {
+            font-style: italic;
+            margin-left: 20px;
+            border-left: 3px solid #DDD;
+            padding-left: 15px;
+        }
+
+        /* 3. Footer Styles */
+        .footer {
+            background-color: var(--cnn-dark);
+            color: var(--cnn-light-text);
+            padding: 50px 20px;
+            border-top: 2px solid var(--cnn-red);
+            font-size: 14px;
+        }
+
+        .footer-content {
+            max-width: var(--max-content-width);
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .footer-heading {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #FFFFFF;
+        }
+
+        .footer-link {
+            color: var(--cnn-gray-text);
+            padding: 2px 0;
+        }
+
+        .footer-link:hover {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+        
+        /* Adjustments for the smaller grid sections like Style/Travel */
+        .style-travel-grid {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        /* Adjustments for the large, bottom grid sections */
+        .bottom-grid {
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr; /* Custom widths based on content */
+            gap: 30px;
+        }
+        
+        /* Specific coloring for war sections */
+        .war-section .footer-heading {
+            color: var(--cnn-red);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-content">
+            <div class="nav-left">
+                <a href="#">CNN Politics</a>
+                <a href="#">Trump</a>
+                <a href="#">Facts First</a>
+                <a href="#">CNN Polls</a>
+                <a href="#">2025 Elections</a>
+            </div>
+            <div class="nav-right">
+                <a href="#" class="icon-link">Watch</a>
+                <a href="#" class="icon-link">Listen</a>
+                <a href="#" class="icon-link">Live TV</a>
+                <a href="#" class="icon-link">Sign In</a>
+                <a href="#" class="icon-link"></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="article-container">
+        <p class="article-metadata">POLITICS &middot; 3 MIN READ</p>
+        
+        <div class="headline-wrapper">
+            <div class="red-bar"></div>
+            <h1>Trump escalates back-and-forth with Colombia's president, announcing end of US payments to country</h1>
+        </div>
+
+        <div class="byline-date">
+            <span class="date">OCT 19, 2025</span>
+            By <span class="author-name">Betsy Klein</span>
+        </div>
+        
+        <div class="social-share">
+            <span>✉️</span>
+            <span>🔗</span>
+            <span>𝕏</span>
+            <span>🇫</span>
+        </div>
+
+        <div class="article-body-content">
+            <p>West Palm Beach, Florida — President **Donald Trump** announced Sunday he would end all **US payments and subsidies to Colombia**, marking a dramatic escalation in his back-and-forth with the country's president, **Gustavo Petro**.</p>
+            
+            <p>Trump said in a post to social media that Petro "does nothing to stop the production of drugs in his country, “despite large scale payments and subsidies from the USA that are nothing more than a long term rip off of America.”</p>
+            
+            <p class="quote">“As of today, these payments, or any other form of payment, or subsidies, will no longer be made to Colombia,” the president said in all caps.</p>
+            
+            <p>The two leaders have clashed on the issues of migration and drug trafficking, especially as the US conducts <a href="#">strikes on alleged drug boats</a> in the Caribbean, but Sunday's announcement intensified the friction with new financial stakes.</p>
+
+            <p>The US has provided about **$210 million in assistance to Colombia** this fiscal year, including about **$31 million in agricultural support**, according to <a href="#">data</a> from the US Department of State. It was not immediately clear which payments Trump was referring to Sunday, but the US is by far the largest funder of Colombia's security, providing billions of dollars every year. The Andean country had previously been Washington’s most reliable ally in South America on national security and defense.</p>
+            
+            <p>Trump warned Petro that he “better close up these killing fields,” referring to areas where drugs are produced, “or the United States will close them up for him, and it won’t be done nicely.”</p>
+            
+            <p>Trump’s comments come after his administration <a href="#">said last month</a> that Colombia had “failed demonstrably” in its obligations to fight drug trafficking but that the US would continue to provide funding to the country. Colombia is the world’s leading producer of cocaine, accounting for almost two-thirds of total production, according to the United Nations Office for Drug and Crime.</p>
+            
+            <p>Trump and Petro have sparred for months, most recently as Petro accused the US of murdering an innocent Colombian national during one of the Trump administration's strikes in the Caribbean. Last month, the US <a href="#">revoked Petro’s visa</a> after he publicly called on American soldiers to...</p>
+        </div>
+        
+        </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-heading">World</div>
+                    <a href="#" class="footer-link">Africa</a>
+                    <a href="#" class="footer-link">Americas</a>
+                    <a href="#" class="footer-link">Asia</a>
+                    <a href="#" class="footer-link">Australia</a>
+                    <a href="#" class="footer-link">China</a>
+                    <a href="#" class="footer-link">Europe</a>
+                    <a href="#" class="footer-link">India</a>
+                    <a href="#" class="footer-link">Middle East</a>
+                    <a href="#" class="footer-link">United Kingdom</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">US Politics</div>
+                    <a href="#" class="footer-link">Trump</a>
+                    <a href="#" class="footer-link">Facts First</a>
+                    <a href="#" class="footer-link">CNN Polls</a>
+                    <a href="#" class="footer-link">2025 Elections</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">Business</a></div>
+                    <a href="#" class="footer-link">Tech</a>
+                    <a href="#" class="footer-link">Media</a>
+                    <a href="#" class="footer-link">Calculators</a>
+                    <a href="#" class="footer-link">Videos</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">Markets</div>
+                    <a href="#" class="footer-link">Pre-markets</a>
+                    <a href="#" class="footer-link">After-Hours</a>
+                    <a href="#" class="footer-link">Fear & Greed</a>
+                    <a href="#" class="footer-link">Investing</a>
+                    <a href="#" class="footer-link">Markets Now</a>
+                    <a href="#" class="footer-link">Nightcap</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">Health</div>
+                    <a href="#" class="footer-link">Life, But Better</a>
+                    <a href="#" class="footer-link">Fitness</a>
+                    <a href="#" class="footer-link">Food</a>
+                    <a href="#" class="footer-link">Sleep</a>
+                    <a href="#" class="footer-link">Mindfulness</a>
+                    <a href="#" class="footer-link">Relationships</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">Entertainment</div>
+                    <a href="#" class="footer-link">Movies</a>
+                    <a href="#" class="footer-link">Television</a>
+                    <a href="#" class="footer-link">Celebrity</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">Tech</div>
+                    <a href="#" class="footer-link">Innovate</a>
+                    <a href="#" class="footer-link">Foreseeable Future</a>
+                    <a href="#" class="footer-link">Mission: Ahead</a>
+                    <a href="#" class="footer-link">Work Transformed</a>
+                    <a href="#" class="footer-link">Innovative Cities</a>
+                </div>
+
+                <div class="footer-section war-section">
+                    <div class="footer-heading">Ukraine-Russia War</div>
+                </div>
+
+                <div class="style-travel-grid">
+                    <div class="footer-section">
+                        <div class="footer-heading">Style</div>
+                        <a href="#" class="footer-link">Arts</a>
+                        <a href="#" class="footer-link">Design</a>
+                        <a href="#" class="footer-link">Fashion</a>
+                        <a href="#" class="footer-link">Architecture</a>
+                        <a href="#" class="footer-link">Luxury</a>
+                        <a href="#" class="footer-link">Beauty</a>
+                        <a href="#" class="footer-link">Video</a>
+                    </div>
+                    <div class="footer-section">
+                        <div class="footer-heading">Travel</div>
+                        <a href="#" class="footer-link">Destinations</a>
+                        <a href="#" class="footer-link">Food & Drink</a>
+                        <a href="#" class="footer-link">Stay</a>
+                        <a href="#" class="footer-link">News</a>
+                        <a href="#" class="footer-link">Videos</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="footer-heading">Sports</div>
+                    <a href="#" class="footer-link">Football</a>
+                    <a href="#" class="footer-link">Tennis</a>
+                    <a href="#" class="footer-link">Golf</a>
+                    <a href="#" class="footer-link">Motorsport</a>
+                    <a href="#" class="footer-link">US Sports</a>
+                    <a href="#" class="footer-link">Olympics</a>
+                    <a href="#" class="footer-link">Climbing</a>
+                    <a href="#" class="footer-link">Esports</a>
+                    <a href="#" class="footer-link">Hockey</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">Science</div>
+                    <a href="#" class="footer-link">Space</a>
+                    <a href="#" class="footer-link">Life</a>
+                    <a href="#" class="footer-link">Unearthed</a>
+                </div>
+
+                <div class="footer-section">
+                    <div class="footer-heading">Climate</div>
+                    <a href="#" class="footer-link">Solutions</a>
+                    <a href="#" class="footer-link">Weather</a>
+                </div>
+
+                <div class="footer-section">
+                    <div class="footer-heading">Weather</div>
+                    <a href="#" class="footer-link">Video</a>
+                    <a href="#" class="footer-link">Climate</a>
+                </div>
+            </div> <div class="bottom-grid">
+                <div class="footer-section war-section">
+                    <div class="footer-heading">Israel-Hamas War</div>
+                </div>
+
+                <div class="footer-section">
+                    <div class="footer-heading">Features</div>
+                    <a href="#" class="footer-link">As Equals</a>
+                    <a href="#" class="footer-link">Call to Earth</a>
+                    <a href="#" class="footer-link">CNN Fast</a>
+                    <a href="#" class="footer-link">Freedom Project</a>
+                    <a href="#" class="footer-link">Impact Your World</a>
+                    <a href="#" class="footer-link">Inside Africa</a>
+                    <a href="#" class="footer-link">CNN Heroes</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">Watch</div>
+                    <a href="#" class="footer-link">Live TV</a>
+                    <a href="#" class="footer-link">CNN Fast</a>
+                    <a href="#" class="footer-link">Shows A-Z</a>
+                    <a href="#" class="footer-link">CNNIO</a>
+                    <a href="#" class="footer-link">CNN Max</a>
+                    <a href="#" class="footer-link">CNN TV Schedules</a>
+                </div>
+
+                <div class="footer-section">
+                    <div class="footer-heading">Listen</div>
+                    <a href="#" class="footer-link">CNN 5 Things</a>
+                    <a href="#" class="footer-link">Chasing Life with Dr. Sanjay Gupta</a>
+                    <a href="#" class="footer-link">The Assignment with Audie Cornish</a>
+                    <a href="#" class="footer-link">One Thing</a>
+                    <a href="#" class="footer-link">Tug of War</a>
+                    <a href="#" class="footer-link">CNN Political Briefing</a>
+                    <a href="#" class="footer-link">The Axe Files</a>
+                    <a href="#" class="footer-link">All There is with Anderson</a>
+                </div>
+
+                <div class="footer-section">
+                    <div class="footer-heading">Games</div>
+                    <a href="#" class="footer-link">Daily Crossword</a>
+                    <a href="#" class="footer-link">Jumble Crossword</a>
+                    <a href="#" class="footer-link">Photo Shuffle</a>
+                    <a href="#" class="footer-link">Suddok Block</a>
+                    <a href="#" class="footer-link">Sudoku</a>
+                    <a href="#" class="footer-link">5 Things Quiz</a>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="footer-heading">About CNN</div>
+                    <a href="#" class="footer-link">Photos</a>
+                    <a href="#" class="footer-link">Investigations</a>
+                    <a href="#" class="footer-link">CNN Profiles</a>
+                    <a href="#" class="footer-link">CNN Leadership</a>
+                    <a href="#" class="footer-link">CNN Newsletters</a>
+                    <a href="#" class="footer-link">Work for CNN</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+<a href="./index.html">Back to home</a>
+</body>
+</html>
