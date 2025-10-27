@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato Dining Out Page Clone</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font (or similar sans-serif appearance) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --zomato-red: #E23744;
+            --zomato-red-hover: #D0303B;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Very light grey background */
+            line-height: 1.5;
+        }
+        .zomato-red-bg {
+            background-color: var(--zomato-red);
+        }
+        .zomato-red-text {
+            color: var(--zomato-red);
+        }
+        .zomato-rating {
+            background-color: #3b8214; /* Darker green background for rating box */
+        }
+
+        /* Hide scrollbar for the collections section (horizontal scroll) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'zomato-red': 'var(--zomato-red)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- 1. Scroll-to-Top Button (Floating) -->
+    <button id="scrollToTopBtn" class="fixed right-6 bottom-6 md:right-10 md:bottom-10 zomato-red-bg text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 opacity-0 invisible hover:bg-red-700" aria-label="Scroll to top">
+        <!-- SVG for Arrow Up Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+
+        <!-- 2. Header and Search Bar (Sticky-like based on screenshot context) -->
+        <header class="py-4 md:py-6">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+                <!-- Logo and Search/Location Bar Container -->
+                <div class="flex items-center w-full justify-between md:justify-start">
+                    <!-- Logo (Left-aligned) -->
+                    <h1 class="text-3xl font-extrabold text-gray-800 hidden md:block mr-8">zomato</h1>
+
+                    <!-- Search/Location Bar (The primary component) -->
+                    <div class="flex items-center w-full md:w-auto md:max-w-2xl bg-white border border-gray-200 rounded-lg shadow-md">
+                        <!-- Location Selector -->
+                        <div class="relative flex items-center p-3 border-r border-gray-200 w-1/2 md:w-56">
+                            <!-- Location Icon (Pin) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zomato-red mr-2"><path d="M12 17.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 5.25 10 12 10 12s10-6.75 10-12C22 6.48 17.52 2 12 2z"/></svg>
+                            <select class="appearance-none bg-transparent outline-none text-gray-600 text-base font-normal w-full">
+                                <option>Surat</option>
+                                <option>Mumbai</option>
+                                <option>Delhi</option>
+                            </select>
+                            <!-- Chevron Down Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute right-3 text-gray-400 pointer-events-none"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                        <!-- Search Input -->
+                        <div class="flex items-center p-3 flex-grow">
+                            <!-- Search Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 mr-2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                            <input type="text" placeholder="Search for restaurant, cuisine or a dish" class="w-full outline-none text-base text-gray-700 placeholder-gray-400">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auth Links (Right-aligned) -->
+                <nav class="hidden md:flex items-center space-x-6 text-gray-600 font-medium">
+                    <a href="#" class="hover:text-gray-800 transition duration-200">Log in</a>
+                    <a href="#" class="hover:text-gray-800 transition duration-200">Sign up</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- 3. Breadcrumbs and Tabs -->
+        <nav class="mt-4 text-sm text-gray-500 mb-8">
+            <a href="#" class="hover:text-gray-800">Home</a> /
+            <a href="#" class="hover:text-gray-800">India</a> /
+            <a href="#" class="hover:text-gray-800">Surat Restaurants</a>
+        </nav>
+
+        <div class="flex space-x-8 mt-6 border-b border-gray-200 mb-8">
+            <!-- Dining Out Tab (Active) -->
+            <a href="#" class="flex items-center pb-3 border-b-2 border-zomato-red text-zomato-red font-semibold">
+                <!-- Dining Out Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M6 19v-2a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v2"/><circle cx="9" cy="8" r="3"/><circle cx="16" cy="17" r="3"/><line x1="16" x2="22" y1="2" y2="8"/><path d="M21.41 11.41 15.59 5.59 12 12l5.59 5.59 5.82-5.82z"/></svg>
+                Dining Out
+            </a>
+            <!-- Delivery Tab (Inactive) -->
+            <a href="#" class="flex items-center pb-3 text-gray-500 hover:text-gray-800 transition duration-200">
+                <!-- Delivery Icon (Motorcycle) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M1 17h5l3-7 4 7-3 5h9"/><circle cx="6" cy="18" r="3"/><path d="M19 18h3"/><circle cx="19" cy="18" r="3"/><path d="M10 15h4v5l1 1"/><path d="M12 9v1"/></svg>
+                Delivery
+            </a>
+        </div>
+
+
+        <!-- 4. Collections Section -->
+        <section class="mb-10">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-2">Collections</h2>
+            <div class="flex justify-between items-center mb-6">
+                <p class="text-gray-600 max-w-2xl text-lg">Explore curated lists of top restaurants, cafes, pubs, and bars in Surat, based on trends</p>
+                <a href="#" class="hidden sm:inline-block text-zomato-red hover:text-red-700 font-medium whitespace-nowrap">All collections in Surat &rarr;</a>
+            </div>
+
+            <!-- Collections Carousel (Horizontal Scroll for responsiveness) -->
+            <div class="flex space-x-4 overflow-x-scroll no-scrollbar py-2">
+
+                <!-- Collection Card 1 -->
+                <div class="flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden shadow-lg relative cursor-pointer">
+                    <!-- Placeholder image to simulate screenshot content -->
+                    <img src="data:image/jpeg;base64,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" onerror="this.onerror=null; this.src='https://placehold.co/256x320/3d5a80/ffffff?text=Image+Error'" alt="Gujarati Delicacies" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4 text-white">
+                        <h3 class="text-xl font-bold">Gujarati Delicacies</h3>
+                        <p class="text-sm">11 Places &rarr;</p>
+                    </div>
+                </div>
+
+                <!-- Collection Card 2 -->
+                <div class="flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden shadow-lg relative cursor-pointer">
+                    <!-- Placeholder image to simulate screenshot content -->
+                    <img src="data:image/jpeg;base64,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" onerror="this.onerror=null; this.src='https://placehold.co/256x320/3d5a80/ffffff?text=Image+Error'" alt="Great cafes" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4 text-white">
+                        <h3 class="text-xl font-bold">Great cafes</h3>
+                        <p class="text-sm">16 Places &rarr;</p>
+                    </div>
+                </div>
+
+                <!-- Collection Card 3 -->
+            
+
+                <!-- Collection Card 4 -->
+                <div class="flex-shrink-0 w-64 h-80 rounded-xl overflow-hidden shadow-lg relative cursor-pointer">
+                    <!-- Placeholder image to simulate screenshot content -->
+                    <img src="data:image/jpeg;base64,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" onerror="this.onerror=null; this.src='https://placehold.co/256x320/3d5a80/ffffff?text=Image+Error'" alt="Local Favourites" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-4 text-white">
+                        <h3 class="text-xl font-bold">Local Favourites</h3>
+                        <p class="text-sm">14 Places &rarr;</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. Filters Bar -->
+        <div class="flex space-x-3 overflow-x-scroll no-scrollbar py-2 mb-10">
+            <!-- Filter Button 1 (Primary - slightly wider, text-white icon, subtle shadow) -->
+            <button class="flex items-center px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-white shadow-sm hover:bg-gray-50 text-sm whitespace-nowrap">
+                <!-- Filters Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 mr-2"><line x1="2" x2="22" y1="18" y2="18"/><line x1="2" x2="10" y1="6" y2="6"/><line x1="14" x2="22" y1="6" y2="6"/><line x1="2" x2="18" y1="12" y2="12"/><line x1="22" x2="22" y1="2" y2="10"/><line x1="22" x2="22" y1="14" y2="22"/></svg>
+                Filters
+            </button>
+            <!-- Filter Buttons (Secondary - simple look) -->
+            <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-white shadow-sm hover:bg-gray-50 text-sm whitespace-nowrap">Offers</button>
+            <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-white shadow-sm hover:bg-gray-50 text-sm whitespace-nowrap">Rating: 4.5+</button>
+            <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-white shadow-sm hover:bg-gray-50 text-sm whitespace-nowrap">Pet friendly</button>
+            <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-white shadow-sm hover:bg-gray-50 text-sm whitespace-nowrap">Outdoor seating</button>
+            <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-white shadow-sm hover:bg-gray-50 text-sm whitespace-nowrap">Open Now</button>
+        </div>
+
+
+        <!-- 6. Promotional Banner (Screenshot 1) -->
+        <section class="mb-12">
+            <div class="h-48 rounded-xl overflow-hidden shadow-xl relative">
+                <!-- Image for the banner (simulating the dark, food background) -->
+                <img src="https://b.zmtcdn.com/data/o2_assets/e067a1cf0d3fe27b366402b98b994e9f1716296909.png" onerror="this.onerror=null; this.src='https://placehold.co/1200x250/333333/ffffff?text=Promo+Banner+Image+Placeholder'" alt="Get up to 50% OFF" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/30"></div> <!-- Dark overlay to enhance text readability -->
+                <div class="absolute inset-0 flex flex-col justify-center items-start p-8 md:p-12">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-2 leading-tight">Get up to <span class="text-white">50% OFF</span></h2>
+                    <p class="text-white mb-4 text-sm md:text-base">on your dining bills with Zomato</p>
+                    <button class="zomato-red-bg text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-red-700 transition duration-300 text-sm border-2 border-transparent hover:border-white">
+                        Check out all the restaurants
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. Restaurants List (Screenshots 1 & 2) -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-8">Restaurants in Surat</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Restaurant Card Component -->
+                
+                <!-- Card 1: Mr Cafe - The Sky Lounge -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <!-- Placeholder image simulating screenshot content -->
+                        <img src="https://b.zmtcdn.com/data/pictures/8/21383378/06493f1fce8164cb4f461b90f8cfe09b_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Mr Cafe - The Sky Lounge" class="w-full h-full object-cover">
+                        <div class="absolute bottom-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                            Flat 15% OFF
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Mr Cafe - The Sky Lounge</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                4.1
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">North Indian, Italian, Pasta...</p>
+                            <p>₹1,800 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">Vesu, Surat</p>
+                            <p>7.1 km</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Thyme & Whisk -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/4/20817784/833fc03cf61f3beaaa737836d8beb1f0_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Thyme & Whisk" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Thyme & Whisk</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                4.1
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">Cafe, Coffee, North Indian...</p>
+                            <p>₹1,500 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">Piplod, Surat</p>
+                            <p>6 km</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Si Nonna's - The Original Sourdough -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/1/21324351/61fb66264c634279e018aba00bc8dafa_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Si Nonna's" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Si Nonna's - The Original Sour...</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                4.5
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">Pizza, Salad, Coffee, Italia...</p>
+                            <p>₹1,500 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">Vesu, Surat</p>
+                            <p>5.3 km</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Zest House -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/1/19243651/410affdd14230569aa255581bc316fc0_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Zest House" class="w-full h-full object-cover">
+                        <div class="absolute bottom-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                            Flat 10% OFF
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Zest House</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                3.8
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">North Indian, Chinese, Pizz...</p>
+                            <p>₹1,600 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">City Light, Surat</p>
+                            <p>3.7 km</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 5: Spice Petals -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/4/19630764/d90e65ef1acb3b2365d47b4ebd039619_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Spice Petals" class="w-full h-full object-cover">
+                        <div class="absolute bottom-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                            Flat 10% OFF
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Spice Petals</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                4.6
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">North Indian, Chinese, Con...</p>
+                            <p>₹1,000 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">Vesu, Surat</p>
+                            <p>6.4 km</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Wok On Fire -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/chains/0/3800020/0dc49b7e184f6f658510dbfa9bf256fc_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Wok On Fire" class="w-full h-full object-cover">
+                        <div class="absolute bottom-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                            Flat 10% OFF
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Wok On Fire</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                4.0
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">Chinese, Asian, Momos, D...</p>
+                            <p>₹1,000 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">Piplod, Surat</p>
+                            <p>4.2 km</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7: Girnar Multi Cuisine Restaurant -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/2/21044392/e48701f5ad89f11454957b2c0cccd16c_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Girnar Multi Cuisine Restaurant" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Girnar Multi Cuisine Restaurant</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                4.3
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">Pizza, Pasta</p>
+                            <p>₹1,000 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">Adajan Gam, Surat</p>
+                            <p>6.2 km</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8: Table 101 - Surat Marriott Hotel -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/9/19307519/ab640d4992f303079469dc07749d18dc_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Table 101" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Table 101 - Surat Marriott H...</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                4.7
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">North Indian, Continental,...</p>
+                            <p>₹3,000 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">City Light, Surat</p>
+                            <p>4.3 km</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9: Zibrish Rooftop -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer">
+                    <div class="relative h-56 overflow-hidden rounded-t-xl">
+                        <img src="https://b.zmtcdn.com/data/pictures/0/21554670/eef3bd971df72470944f7a1179812e42_featured_v2.jpg?output-format=webp" onerror="this.onerror=null; this.src='https://placehold.co/400x300/a8dadc/1d3557?text=Image+Error'" alt="Zibrish Rooftop" class="w-full h-full object-cover">
+                        <div class="absolute bottom-3 left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-md">
+                            Flat 15% OFF
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="text-lg font-bold truncate">Zibrish Rooftop</h3>
+                            <div class="flex items-center zomato-rating text-white text-sm font-semibold px-2 py-0.5 rounded-md">
+                                3.9
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="ml-0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm text-gray-500">
+                            <p class="truncate mr-2">North Indian, Italian, Conli...</p>
+                            <p>₹1,000 for two</p>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-400 mt-1">
+                            <p class="truncate mr-2">Piplod, Surat</p>
+                            <p>6.2 km</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div> <!-- End of max-w-7xl content container -->
+
+
+    <!-- 8. Footer Section (Screenshot 4) -->
+    <footer class="bg-gray-100 pt-16 pb-8 text-gray-700 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Top Footer: Logo and Selectors -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <h1 class="text-3xl font-extrabold text-gray-800 mb-4 md:mb-0">zomato</h1>
+                <div class="flex space-x-4">
+                    <!-- Country Selector -->
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-gray-300 rounded-lg py-2 px-4 pr-10 text-sm font-medium focus:outline-none hover:shadow-md transition">
+                            <option>🇮🇳 India</option>
+                            <option>🇺🇸 USA</option>
+                            <option>🇦🇪 UAE</option>
+                        </select>
+                        <!-- Chevron Down Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"><path d="m6 9 6 6 6-6"/></svg>
+                    </div>
+                    <!-- Language Selector -->
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-gray-300 rounded-lg py-2 px-4 pr-10 text-sm font-medium focus:outline-none hover:shadow-md transition">
+                            <option>🇬🇧 English</option>
+                            <option>हिन्दी Hindi</option>
+                            <option>ગુજરાતી Gujarati</option>
+                        </select>
+                        <!-- Chevron Down Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none"><path d="m6 9 6 6 6-6"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Footer Links Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-y-8 md:gap-y-0 text-sm mb-12">
+
+                <!-- Column 1: ABOUT ZOMATO -->
+                <div class="col-span-1">
+                    <h4 class="font-bold uppercase mb-3 text-gray-800 tracking-wider">About Zomato</h4>
+                    <ul class="space-y-1.5">
+                        <li><a href="#" class="hover:text-gray-900">Who We Are</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Blog</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Work With Us</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Investor Relations</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Report Fraud</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Press Kit</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: ZOMAVERSE -->
+                <div class="col-span-1">
+                    <h4 class="font-bold uppercase mb-3 text-gray-800 tracking-wider">Zomaverse</h4>
+                    <ul class="space-y-1.5">
+                        <li><a href="#" class="hover:text-gray-900">Zomato</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Blinkit</a></li>
+                        <li><a href="#" class="hover:text-gray-900">District</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Feeding India</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Hyperpure</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Zomato Live</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Zomaland</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Weather Union</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: FOR RESTAURANTS -->
+                <div class="col-span-1">
+                    <h4 class="font-bold uppercase mb-3 text-gray-800 tracking-wider">For Restaurants</h4>
+                    <ul class="space-y-1.5">
+                        <li><a href="#" class="hover:text-gray-900">Partner With Us</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Apps For You</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: LEARN MORE -->
+                <div class="col-span-1">
+                    <h4 class="font-bold uppercase mb-3 text-gray-800 tracking-wider">Learn More</h4>
+                    <ul class="space-y-1.5">
+                        <li><a href="#" class="hover:text-gray-900">Privacy</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Security</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Terms</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: SOCIAL LINKS & APP DOWNLOAD -->
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-bold uppercase mb-3 text-gray-800 tracking-wider">Social Links</h4>
+                    <!-- Social Icons -->
+                    <div class="flex space-x-2.5 mb-6">
+                        <!-- Icon containers to match the screenshot spacing and size -->
+                        <a href="#" aria-label="LinkedIn" class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center hover:bg-gray-400 transition duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center hover:bg-gray-400 transition duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center hover:bg-gray-400 transition duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2 1.7-1.4 3.4-3.5 4-5.6-.4 0-.8-.1-1.3-.1-3.3 0-6.1 2.3-6.6 5.5.1.1.2.2.3.2C6.7 15.6 11 15 14.5 12c3.4-3 3.6-7.5 2.1-10.7C18.6 4.3 20 4 22 4z"/></svg>
+                        </a>
+                        <a href="#" aria-label="YouTube" class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center hover:bg-gray-400 transition duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17.5c0-.6.1-1.3.3-1.8.3-.9.9-1.5 1.8-1.8.6-.2 1.2-.3 1.8-.3h9.2c.6 0 1.3.1 1.8.3.9.3 1.5.9 1.8 1.8.2.5.3 1.1.3 1.8 0 .7-.1 1.3-.3 1.8-.3.9-.9 1.5-1.8 1.8-.6.2-1.2.3-1.8.3H6.4c-.6 0-1.3-.1-1.8-.3-.9-.3-1.5-.9-1.8-1.8-.2-.5-.3-1.1-.3-1.8z"/><path d="m10 12 5 3-5 3V12z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center hover:bg-gray-400 transition duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
+                    
+                    <!-- App Download Links -->
+                    <a href="#" class="block mb-3">
+                        <!-- Placeholder image simulating App Store badge -->
+                        <img src="https://placehold.co/137x40/36454F/ffffff?text=Download+on+the+App+Store" onerror="this.onerror=null; this.src='https://placehold.co/137x40/333333/ffffff?text=App+Store'" alt="Download on the App Store" class="w-32 md:w-36 rounded-lg">
+                    </a>
+                    <a href="#" class="block">
+                        <!-- Placeholder image simulating Google Play badge -->
+                        <img src="https://placehold.co/137x40/36454F/ffffff?text=GET+IT+ON+Google+Play" onerror="this.onerror=null; this.src='https://placehold.co/137x40/333333/ffffff?text=Google+Play'" alt="Get it on Google Play" class="w-32 md:w-36 rounded-lg">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom: Copyright and Legal -->
+            <hr class="border-gray-300 mb-6">
+            <p class="text-xs text-gray-500 leading-relaxed">
+                By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content Policies. All trademarks are properties of their respective owners. 2008-2025 © Zomato™ Ltd. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+  <a href="./new1.html">Go to next page</a>
+</body>
+</html>
