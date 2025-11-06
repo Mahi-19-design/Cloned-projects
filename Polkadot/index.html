@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polkadot Clone - Responsive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        :root {
+            --dot-pink: #E6007A;
+            --dot-blue: #E6007A; /* For secondary buttons like JOIN THE COMMUNITY */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .dark-card {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+        }
+
+        /* Custom style for the subtle link hover effect */
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+
+        .cta-button-pink {
+            background-color: var(--dot-pink);
+            transition: all 0.3s;
+        }
+        .cta-button-pink:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 15px rgba(230, 0, 122, 0.4);
+        }
+
+        .cta-button-white {
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            transition: all 0.3s;
+        }
+        .cta-button-white:hover {
+            border-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Background - Simulating the dark, glowing, futuristic image */
+        .hero-section {
+            background-image: url('5c04f80a-1684-47fb-9027-106b00e1c0c0.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding-top: 10rem;
+            padding-bottom: 10rem;
+            isolation: isolate;
+        }
+
+        /* Overlay for color and dark ambiance */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 30%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: -1;
+        }
+
+        /* --- Featured Project (FIFA Rivals) Container Style --- */
+        .featured-project {
+            background-image: url('https://cdn.sanity.io/images/qf32zgfm/production/05f1cb370a6841edf6af7799bfcdd0877e3b19c5-1500x500.png?fm=webp&fit=max');
+            background-size: cover;
+            background-position: center;
+            min-height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+        .featured-project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(230, 0, 122, 0.7) 0%, rgba(230, 0, 122, 0) 50%);
+            z-index: -1;
+        }
+
+        /* --- Featured Project (NFL Rivals) Container Style --- */
+        .featured-project-2 {
+            background-image: url('https://cdn.sanity.io/images/qf32zgfm/production/0c2db0a750e31d0f7344ae842b1cfc17ac2a2dee-1528x1144.png?fm=webp&fit=max');
+            background-size: cover;
+            background-position: center;
+            min-height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            z-index: 10;
+        }
+        .featured-project-2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
+            z-index: -1;
+        }
+
+        
+    </style>
+    
+</head>
+<body class="bg-black text-white">
+
+  
+    <header class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+        
+                <svg width="24" height="24" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM20 10.375C17.4392 10.375 15.375 12.4392 15.375 15C15.375 17.5608 17.4392 19.625 20 19.625C22.5608 19.625 24.625 17.5608 24.625 15C24.625 12.4392 22.5608 10.375 20 10.375ZM15.375 25C17.9358 25 20 22.9358 20 20.375C20 17.8142 17.9358 15.75 15.375 15.75C12.8142 15.75 10.75 17.8142 10.75 20.375C10.75 22.9358 12.8142 25 15.375 25ZM29.25 20C31.8108 20 33.875 17.9358 33.875 15.375C33.875 12.8142 31.8108 10.75 29.25 10.75C26.6892 10.75 24.625 12.8142 24.625 15.375C24.625 17.9358 26.6892 20 29.25 20ZM24.625 25C27.1858 25 29.25 22.9358 29.25 20.375C29.25 17.8142 27.1858 15.75 24.625 15.75C22.0642 15.75 20 17.8142 20 20.375C20 22.9358 22.0642 25 24.625 25Z" fill="#E6007A"/>
+                </svg>
+                <span class="text-xl font-semibold">Polkadot</span>
+            </div>
+
+           
+            <nav class="hidden lg:flex items-center space-x-6 text-sm text-gray-300">
+                <a href="./index1.html" class="nav-link">Get started</a>
+                <a href="./index23.html" class="nav-link">Platform</a>
+                <a href="./index.html" class="nav-link">Developers</a>
+                <a href="./index.html" class="nav-link">Solutions</a>
+                <a href="./index.html" class="nav-link">Community</a>
+            </nav>
+
+           
+            <div class="flex items-center space-x-4">
+                <button class="p-2 rounded-full hover:bg-gray-800 transition hidden lg:block">
+                    <i data-lucide="moon" class="w-5 h-5 text-white"></i>
+                </button>
+                <button class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition">
+                    <i data-lucide="search" class="w-5 h-5 text-white"></i>
+                </button>
+          
+
+                <button class="p-2 rounded-full hover:bg-gray-800 transition lg:hidden">
+                    <i data-lucide="menu" class="w-5 h-5 text-white"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+      
+        <section class="hero-section">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left">
+                <h1 class="text-6xl md:text-8xl font-extrabold leading-none mb-6">
+                    Built for <br class="hidden lg:inline">the billions
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 mb-10">
+                    Polkadot is the most scalable, secure, and resilient blockchain platform—designed to bring Web3 to the world.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
+                    <button class="cta-button-pink text-lg font-semibold py-3 px-8 rounded-full shadow-lg">
+                        JOIN THE COMMUNITY
+                    </button>
+                    <button class="cta-button-white text-lg font-semibold py-3 px-8 rounded-full">
+                        START BUILDING
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4">
+                Power without permission
+            </h2>
+            <p class="text-xl text-gray-300 text-center max-w-3xl mx-auto mb-16">
+                Every protocol upgrade, treasury decision, and network direction is determined transparently by DOT holders—the largest decentralized collective in Web3.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+                
+
+                <div class="dark-card p-6 border border-gray-800 hover:border-dot-pink transition duration-300 group">
+                    <h3 class="text-2xl font-semibold mb-2">Just getting started?</h3>
+                    <p class="text-gray-400 mb-6">
+                        Learn how DOT gives you a voice—and powers everything in the Polkadot ecosystem
+                    </p>
+                    <a href="#" class="text-dot-pink flex items-center justify-end text-lg font-semibold">
+                        <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+              
+
+                <div class="dark-card p-6 border border-gray-800 hover:border-dot-pink transition duration-300 group">
+                    <h3 class="text-2xl font-semibold mb-2">Ready to build?</h3>
+                    <p class="text-gray-400 mb-6">
+                        Spin up a custom blockchain in minutes, or build the app of your dreams.
+                    </p>
+                    <a href="#" class="text-dot-pink flex items-center justify-end text-lg font-semibold">
+                        <i data-lucide="arrow-up-right" class="w-6 h-6 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+
+                <div class="dark-card p-6 border border-gray-800 hover:border-dot-pink transition duration-300 group">
+                    <h3 class="text-2xl font-semibold mb-2">Want to connect?</h3>
+                    <p class="text-gray-400 mb-6">
+                        Join the community shaping the next generation of Web3—open, onchain, and unstoppable.
+                    </p>
+                    <a href="#" class="text-dot-pink flex items-center justify-end text-lg font-semibold">
+                        <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-10">
+                Ecosystem happenings
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mb-16">
+                The latest news, notes, and notions from across the Polkadot ecosystem
+            </p>
+
+            <p class="text-lg text-gray-400 text-center max-w-4xl mx-auto mb-10">
+                Polkadot gives builders the decentralized tools and community to turn breakthrough ideas into real-world impact.
+            </p>
+
+            
+            <div class="grid grid-cols-1 gap-6 mb-16">
+              
+                <a href="#" class="featured-project dark-card p-6 flex flex-col justify-end text-white hover:opacity-90 transition">
+                    <div>
+                        <h3 class="text-4xl font-extrabold mb-1">FIFA Rivals</h3>
+                        <p class="text-lg text-gray-200">Mobile game</p>
+                    </div>
+                </a>
+
+       
+                <a href="#" class="featured-project-2 dark-card p-6 flex flex-col justify-end text-white hover:opacity-90 transition">
+                    <div>
+                        <h3 class="text-4xl font-extrabold mb-1">NFL Rivals</h3>
+                        <p class="text-lg text-gray-200">Digital collectible card game</p>
+                    </div>
+                </a>
+
+               
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <a href="#" class="bg-gray-900 h-96 rounded-xl p-8 flex flex-col justify-end text-white relative overflow-hidden group">
+                        <div class="absolute inset-0 z-0 flex items-center justify-center">
+                            <div class="w-full h-full bg-cover bg-center opacity-5" style="background-image: url('https://cdn.sanity.io/images/qf32zgfm/production/05f1cb370a6841edf6af7799bfcdd0877e3b19c5-1500x500.png?fm=webp&fit=max');"></div>
+                            <div class="w-56 h-56 rounded-full border-2 border-purple-500 absolute animate-spin-slow"></div>
+                            <div class="w-40 h-40 rounded-full border-2 border-dot-pink absolute animate-spin-slow-reverse"></div>
+                            <div class="w-24 h-24 rounded-full border-4 border-white bg-dot-pink/30 absolute flex items-center justify-center">
+                                <i data-lucide="compass" class="w-10 h-10 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="z-10">
+                            <h3 class="text-3xl font-extrabold mb-1">BiFrost</h3>
+                            <p class="text-lg text-gray-300">Liquid staking</p>
+                        </div>
+                    </a>
+
+          
+                    <a href="#" class="bg-gray-900 h-96 rounded-xl p-8 flex flex-col justify-end text-white relative overflow-hidden group">
+                       
+                        
+                        <div class="absolute inset-0 z-0 opacity-10 flex items-center justify-center">
+                             <div class="w-full h-full bg-cover bg-center" style="background-image: url('https://cdn.sanity.io/images/qf32zgfm/production/05f1cb370a6841edf6af7799bfcdd0877e3b19c5-1500x500.png?fm=webp&fit=max');"></div>
+                            <div class="absolute p-4 dark-card rounded-xl shadow-2xl">
+                                <i data-lucide="cpu" class="w-12 h-12 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="z-10">
+                            <h3 class="text-3xl font-extrabold mb-1">Hyperbridge <span class="text-sm font-normal text-green-400">OP</span></h3>
+                            <p class="text-lg text-gray-300">Multichain bridge</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+           
+            <div class="mt-20">
+             
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Article 1 -->
+                    <a href="#" class="dark-card overflow-hidden hover:opacity-90 transition group">
+                        <!-- Image/Icon Mockup -->
+                        <div class="h-40 relative bg-purple-700 flex items-center justify-center overflow-hidden">
+                            <img src="https://cdn.sanity.io/images/qf32zgfm/production/47a1dd39f20fd1ed28a407692e3bb916f664d58b-1920x1080.png?fm=webp&fit=max" onerror="this.onerror=null;this.src='https://placehold.co/400x160/D300C7/ffffff?text=Tech+Outage+Image';" alt="Tech Outage" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-red-600/50 flex items-center justify-center">
+                                <i data-lucide="alert-triangle" class="w-16 h-16 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-dot-pink font-semibold mb-1">BLOG</p>
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-dot-pink">5 tech outages that prove decentralization can’t wait</h4>
+                            <p class="text-sm text-gray-400">From AWS to CrowdStrike, major outages are increasing. Discover why centralized infrastructure keeps failing and how decentralization offers a solution.</p>
+                        </div>
+                    </a>
+
+                    <!-- Article 2 -->
+                    <a href="#" class="dark-card overflow-hidden hover:opacity-90 transition group">
+                        <!-- Image/Icon Mockup -->
+                        <div class="h-40 relative bg-yellow-500 flex items-center justify-center overflow-hidden">
+                            <img src="https://cdn.sanity.io/images/qf32zgfm/production/3c49e92015ae3bc93a240e2cc28bc19b503f3b7c-1920x1080.png?fm=webp&fit=max" onerror="this.onerror=null;this.src='https://placehold.co/400x160/FF9900/ffffff?text=RWA+Cityscape';" alt="RWA Cityscape" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-dot-pink font-semibold mb-1">BLOG</p>
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-dot-pink">Real World Assets on Polkadot: Your comprehensive guide to RWA</h4>
+                            <p class="text-sm text-gray-400">Real-World Assets are bringing trillions in physical value onto the blockchain. Learn what RWAs are, how tokenization works, and why Polkadot is the best platform for building RWA projects.</p>
+                        </div>
+                    </a>
+
+                    <!-- Article 3 -->
+                    <a href="#" class="dark-card overflow-hidden hover:opacity-90 transition group">
+                        <!-- Image/Icon Mockup -->
+                        <div class="h-40 relative bg-blue-700 flex items-center justify-center overflow-hidden">
+                            <img src="https://cdn.sanity.io/images/qf32zgfm/production/f7273b2103bd3ef7a3cbb0c851b73abddcb70556-1920x1080.png?fm=webp&fit=max" onerror="this.onerror=null;this.src='https://placehold.co/400x160/3366CC/ffffff?text=Tunnel+of+Light';" alt="Tunnel of Light" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-dot-pink font-semibold mb-1">BLOG</p>
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-dot-pink">Q3 2025 Polkadot DAO recap: Supply cap, treasury decisions & what's next</h4>
+                            <p class="text-sm text-gray-400">Here's what happened in Polkadot governance during Q3 2025: a permanent supply cap, millions in treasury funding decisions, and notable proposal rejections that exposed growing pains in how the DAO evaluates non-technical work.</p>
+                        </div>
+                    </a>
+
+                    <!-- Article 4 -->
+                    <a href="#" class="dark-card overflow-hidden hover:opacity-90 transition group">
+                        <!-- Image/Icon Mockup -->
+                        <div class="h-40 relative bg-pink-700 flex items-center justify-center overflow-hidden">
+                            <!-- Opening Keynote Banner -->
+                            <div class="absolute top-0 left-0 bg-yellow-400 text-black text-xs font-bold py-1 px-3 rounded-br-lg">OPENING KEYNOTE</div>
+                            <!-- Mockup for Gavin Wood's photo -->
+                            <img src="https://cdn.sanity.io/images/qf32zgfm/production/bdeec31a3ed0bca0e6e995ebc412c26d4752511a-1528x1144.png?fm=webp&fit=max" onerror="this.onerror=null;this.src='https://placehold.co/100x100/A0A0A0/FFFFFF?text=Gavin+Wood';" alt="Gavin Wood" class="w-full h-full object-cover">
+                            <div class="absolute bottom-4 left-4 text-white text-sm">
+                                <p class="font-semibold">Gavin Wood</p>
+                                <p class="text-xs">Polkadot Director & Ethereum Co-founder</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-xs text-dot-pink font-semibold mb-1">PRESS RELEASE</p>
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-dot-pink">Gavin Wood to open Polkadot's sub0 Symbiosis in Buenos Aires</h4>
+                            <p class="text-sm text-gray-400">Polkadot creator and Ethereum co-founder Dr. Gavin Wood to deliver keynote at sub0 Symbiosis—his first major public speaking event since returning as CEO of Parity.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Slider/Pagination Controls -->
+                <div class="flex items-center justify-between mt-10">
+                    
+                    <div class="flex space-x-3">
+                        <button class="p-3 rounded-full border border-gray-700 text-gray-400 hover:border-white transition">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button class="p-3 rounded-full border border-gray-700 text-gray-400 hover:border-white transition">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section (Screenshot 6) -->
+    <footer class="bg-black border-t border-gray-800 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Top Row: Logo and Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM20 10.375C17.4392 10.375 15.375 12.4392 15.375 15C15.375 17.5608 17.4392 19.625 20 19.625C22.5608 19.625 24.625 17.5608 24.625 15C24.625 12.4392 22.5608 10.375 20 10.375ZM15.375 25C17.9358 25 20 22.9358 20 20.375C20 17.8142 17.9358 15.75 15.375 15.75C12.8142 15.75 10.75 17.8142 10.75 20.375C10.75 22.9358 12.8142 25 15.375 25ZM29.25 20C31.8108 20 33.875 17.9358 33.875 15.375C33.875 12.8142 31.8108 10.75 29.25 10.75C26.6892 10.75 24.625 12.8142 24.625 15.375C24.625 17.9358 26.6892 20 29.25 20ZM24.625 25C27.1858 25 29.25 22.9358 29.25 20.375C29.25 17.8142 27.1858 15.75 24.625 15.75C22.0642 15.75 20 17.8142 20 20.375C20 22.9358 22.0642 25 24.625 25Z" fill="#E6007A"/>
+                    </svg>
+                    <span class="text-2xl font-semibold">Polkadot</span>
+                </div>
+
+                <div class="flex space-x-4">
+                    <!-- Social Icons (Simulated with Lucide Icons) -->
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="youtube" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="github" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="send" class="w-6 h-6"></i></a>
+                </div>
+            </div>
+
+            <!-- Main Footer Links Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-sm">
+                <!-- Column 1: Get Started -->
+                <div>
+                    <h5 class="text-base font-semibold mb-4 uppercase">Get Started</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">DOT Token</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot Wallets</a></li>
+                        <li><a href="#" class="hover:text-white transition">Staking</a></li>
+                        <li><a href="#" class="hover:text-white transition">Dapps</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bridges</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Platform -->
+                <div>
+                    <h5 class="text-base font-semibold mb-4 uppercase">Platform</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Polkadot SDK</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot Chain</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot DAO</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot Hub</a></li>
+                        <li><a href="#" class="hover:text-white transition">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition">Use Cases</a></li>
+                        <li><a href="#" class="hover:text-white transition">Papers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Smart Contracts</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Developers -->
+                <div>
+                    <h5 class="text-base font-semibold mb-4 uppercase">Developers</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Grants & Funding</a></li>
+                        <li><a href="#" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="#" class="hover:text-white transition">Documentation <i data-lucide="arrow-up-right" class="inline-block w-3 h-3 ml-0.5"></i></a></li>
+                        <li><a href="#" class="hover:text-white transition">Blockchain Academy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Parity Bug Bounty</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bridges Bug Bounty</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Community -->
+                <div>
+                    <h5 class="text-base font-semibold mb-4 uppercase">Community</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Newsroom</a></li>
+                        <li><a href="#" class="hover:text-white transition">Decentralized Jobs</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ambassador Program</a></li>
+                        <li><a href="#" class="hover:text-white transition">Events</a></li>
+                        <li><a href="#" class="hover:text-white transition">Brand Hub</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot.com GitHub <i data-lucide="arrow-up-right" class="inline-block w-3 h-3 ml-0.5"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: Solutions (The screenshots only show a partial list, so this is an educated guess) -->
+                <div>
+                    <h5 class="text-base font-semibold mb-4 uppercase">Solutions</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">AI</a></li>
+                        <li><a href="#" class="hover:text-white transition">Business</a></li>
+                        <li><a href="#" class="hover:text-white transition">DeFi</a></li>
+                        <li><a href="#" class="hover:text-white transition">Gaming</a></li>
+                        <li><a href="#" class="hover:text-white transition">Creator Economy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Legal/Meta Row -->
+            <div class="mt-16 border-t border-gray-900 pt-6 text-xs text-gray-500 flex flex-col sm:flex-row justify-between space-y-3 sm:space-y-0">
+                <p>&copy; 2025 Web3 Foundation</p>
+                <div class="flex flex-wrap space-x-4">
+                    <a href="#" class="hover:text-white transition">Legal Disclosures</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    
+</body>
+</html>

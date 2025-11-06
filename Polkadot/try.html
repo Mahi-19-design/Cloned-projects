@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dapps Showcase</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to handle the dark background and font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Pure black background */
+            color: #f3f4f6; /* Light gray text */
+        }
+        /* Custom gradient for the hero section background, matching the screenshot */
+        .hero-gradient {
+            background: linear-gradient(135deg, #16a34a, #d946ef, #059669);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+
+        /* Subtle shift animation for background - aesthetic choice */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card-bg {
+            background-color: #0f0f0f; /* Slightly lighter black for card backgrounds */
+        }
+
+        /* Mobile Phone Mockup Styling */
+        .phone-mockup {
+            width: 100%;
+            max-width: 300px;
+            height: 550px;
+            background-color: #fff;
+            border-radius: 40px;
+            border: 8px solid #000;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Styling for the floating circles and cards to mimic the complex illustration */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background-color: #ec4899; /* Magenta */
+            opacity: 0.8;
+            filter: blur(8px);
+        }
+        .floating-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            z-index: 20;
+            padding: 1rem;
+            width: 150px;
+        }
+
+    </style>
+    <!-- Load Inter font for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-black text-gray-100">
+
+    <!-- Global Navigation Bar (Based on Screenshot 211001.png) -->
+    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand (Using a colored circle and text for Polkadot logo mock) -->
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="flex items-center space-x-2">
+                        <!-- Mock Polkadot Logo Icon -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#E6007A"/>
+                            <circle cx="8" cy="8" r="2" fill="#FFFFFF"/>
+                            <circle cx="16" cy="8" r="2" fill="#FFFFFF"/>
+                            <circle cx="8" cy="16" r="2" fill="#FFFFFF"/>
+                            <circle cx="16" cy="16" r="2" fill="#FFFFFF"/>
+                        </svg>
+                        <span class="text-2xl font-bold italic text-white">Polkadot</span>
+                    </div>
+                    <!-- Separator line (as seen in the screenshot) -->
+                    <div class="hidden lg:block h-8 w-px bg-gray-700 ml-6"></div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden lg:flex items-center space-x-8 text-lg font-medium">
+                    <a href="#" class="text-white hover:text-pink-500 transition duration-150">Get Started</a>
+                    <a href="#" class="text-white hover:text-pink-500 transition duration-150">Platform</a>
+                    <a href="#" class="text-white hover:text-pink-500 transition duration-150">Developers</a>
+                    <a href="#" class="text-white hover:text-pink-500 transition duration-150">Solutions</a>
+                    <a href="#" class="text-white hover:text-pink-500 transition duration-150">Community</a>
+                </div>
+
+                <!-- Icons & Mobile Menu Button -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle (Moon icon mock) -->
+                    <button class="p-2 rounded-full hover:bg-gray-800 transition duration-150 hidden sm:block">
+                        <svg class="h-6 w-6 text-gray-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                    <!-- Search Icon -->
+                    <button class="p-2 rounded-full hover:bg-gray-800 transition duration-150">
+                        <svg class="h-6 w-6 text-gray-400 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+
+                    <!-- Mobile Menu Button (Hamburger) -->
+                    <button class="lg:hidden p-2 rounded-full hover:bg-gray-800 transition duration-150" id="mobile-menu-button">
+                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default, can be toggled via JS) -->
+        <div class="lg:hidden hidden border-t border-gray-800 pb-3" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-base font-medium">
+                <a href="#" class="block px-3 py-2 rounded-md text-white hover:bg-gray-800">Get Started</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white hover:bg-gray-800">Platform</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white hover:bg-gray-800">Developers</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white hover:bg-gray-800">Solutions</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-white hover:bg-gray-800">Community</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            if (button && menu) {
+                button.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+    
+    <!-- Section 1: Hero and CTA (Screenshot 205257.jpg) -->
+    <!-- Adjusted header padding since the nav is now fixed -->
+    <header class="pt-8 pb-16 lg:pt-12 lg:pb-24 px-4 sm:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto lg:grid lg:grid-cols-2 lg:gap-16">
+
+            <!-- Left Side: Illustration Container (with Gradient Background) -->
+            <div class="relative hero-gradient rounded-3xl p-8 lg:p-16 h-[600px] flex items-center justify-center mb-12 lg:mb-0">
+                <div class="w-full h-full relative flex items-center justify-center">
+
+                    <!-- Floating Circles (Simplified Illustration) -->
+                    <div class="floating-element w-32 h-32 top-10 left-10 transform -rotate-12 bg-pink-500"></div>
+                    <div class="floating-element w-16 h-16 bottom-10 right-10 bg-green-400"></div>
+                    <div class="floating-element w-24 h-24 top-1/2 -translate-y-1/2 -left-16 bg-pink-600"></div>
+                    <div class="floating-element w-40 h-40 bottom-5 left-1/3 bg-pink-500"></div>
+
+                    <!-- Floating Card 1 -->
+                    <div class="floating-card top-1/4 left-0 transform -translate-x-1/2 rotate-6 border border-gray-200">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-4 h-4 rounded-full bg-red-500"></div>
+                            <span class="text-sm font-semibold text-gray-800">Risk</span>
+                        </div>
+                        <p class="text-3xl font-bold mt-2 text-pink-600">1392</p>
+                    </div>
+
+                    <!-- Floating Card 2 (Bottom Left) -->
+                    <div class="floating-card bottom-1/4 left-10 transform -translate-x-1/2 -rotate-3 border border-gray-200 p-3 w-32">
+                        <p class="text-xs font-medium text-gray-600">New</p>
+                        <p class="text-xl font-bold text-green-600">27.5%</p>
+                        <p class="text-xs text-gray-500">Resources Ready</p>
+                    </div>
+
+                    <!-- Phone Mockup -->
+                    <div class="phone-mockup">
+                        <div class="absolute inset-0 p-4 pt-12 text-center overflow-hidden">
+                            <!-- Mock Screen Content -->
+                            <div class="text-sm text-gray-500 mb-6">12:40</div>
+                            <div class="flex justify-between items-center px-2">
+                                <div class="w-6 h-0.5 bg-gray-600"></div>
+                                <span class="text-sm font-semibold text-gray-800">Menu</span>
+                                <div class="w-4 h-4 border border-gray-600 rounded-full"></div>
+                            </div>
+
+                            <h2 class="text-3xl font-bold text-gray-900 mt-16">Submit<br>your project</h2>
+
+                            <!-- Mock Map/Chart -->
+                            <div class="w-full h-32 bg-gray-100 border border-gray-300 rounded-lg mt-10 flex items-center justify-center">
+                                <img src="https://placehold.co/150x80/9ca3af/ffffff?text=MAP" alt="Mock Map" class="w-3/4 h-auto opacity-70">
+                            </div>
+
+                            <p class="absolute bottom-4 left-0 right-0 text-[10px] text-gray-500 font-medium tracking-widest">SECURED BY POLKADOT Ⓒ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Text and CTA -->
+            <div class="flex flex-col justify-center">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6">
+                    Here for the next, newest dapp on the block
+                </h1>
+                <p class="text-lg text-gray-400 mb-8 max-w-lg">
+                    Want to get your project or dapp showcased?
+                </p>
+                <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-gray-600 hover:border-white text-base font-medium rounded-xl shadow-sm text-white bg-black transition duration-300 max-w-xs">
+                    SUBMIT YOUR PROJECT
+                    <svg class="ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+                <!-- The small app card row from the bottom right of the screenshot -->
+                <div class="mt-16 border-t border-gray-800 pt-8 hidden lg:block">
+                    <div class="flex space-x-4">
+                        <div class="w-24 h-24 card-bg rounded-xl overflow-hidden relative group">
+                            <img src="https://placehold.co/96x96/d1d5db/374151?text=IMG" alt="App Preview" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-24 h-24 card-bg rounded-xl overflow-hidden relative group">
+                            <img src="https://placehold.co/96x96/d1d5db/374151?text=IMG" alt="App Preview" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-24 h-24 card-bg rounded-xl overflow-hidden relative group">
+                            <img src="https://placehold.co/96x96/d1d5db/374151?text=IMG" alt="App Preview" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Section 2 & 3: Featured Dapps Grid (Screenshots 205235.jpg and 205248.jpg) -->
+    <section class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-extrabold tracking-tight text-white mb-8">
+            Featured
+        </h2>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap space-x-2 space-y-2 mb-12">
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-white shadow-lg transition duration-150">All</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">Bridges</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">DeFi</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">Gaming</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">Marketplaces</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">Social</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">Tokenization</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">Other</button>
+            <button class="px-4 py-2 text-sm font-medium rounded-full bg-gray-800 text-gray-400 hover:text-white transition duration-150">Wallets</button>
+        </div>
+
+        <!-- Dapp Cards Grid (Combined from both grid screenshots) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Card 1: FIFA Rivals (Screenshot 205235.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/5b21b6/ffffff?text=FIFA+RIVALS');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">Gaming</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">FIFA Rivals</h3>
+                    <p class="text-gray-400 text-sm mt-1">Mobile football game</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Hydration (Screenshot 205235.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/0f766e/ffffff?text=HYDRATION');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">DeFi</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">Hydration</h3>
+                    <p class="text-gray-400 text-sm mt-1">DEX for low-slippage trades</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Hyperbridge (Screenshot 205235.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/1e293b/ffffff?text=HYPERBRIDGE');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">Bridges</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">Hyperbridge</h3>
+                    <p class="text-gray-400 text-sm mt-1">Hyperbridge trustlessly connects chains</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Bifrost (Screenshot 205235.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/9d174d/ffffff?text=BIFROST');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">DeFi</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">Bifrost</h3>
+                    <p class="text-gray-400 text-sm mt-1">Non-custodial liquid staking</p>
+                </div>
+            </div>
+
+            <!-- Card 5: NFL Rivals (Screenshot 205248.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/fbbf24/1f2937?text=NFL+RIVALS');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">Gaming</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">NFL Rivals</h3>
+                    <p class="text-gray-400 text-sm mt-1">Digital collectible card game</p>
+                </div>
+            </div>
+
+            <!-- Card 6: Talisman (Screenshot 205248.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/111827/ffffff?text=TALISMAN');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">Wallets</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">Talisman</h3>
+                    <p class="text-gray-400 text-sm mt-1">Ultra-secure browser wallet</p>
+                </div>
+            </div>
+
+            <!-- Card 7: Evrloot (Screenshot 205248.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/991b1f/ffffff?text=EVRLOOT');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">Gaming</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">Evrloot</h3>
+                    <p class="text-gray-400 text-sm mt-1">Dark fantasy role playing game</p>
+                </div>
+            </div>
+
+            <!-- Card 8: Nova Wallet (Screenshot 205248.jpg) -->
+            <div class="card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-900 hover:border-gray-700">
+                <!-- Image Placeholder -->
+                <div class="h-64 relative bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/4c1d95/ffffff?text=NOVA+WALLET');">
+                    <div class="absolute bottom-4 left-4">
+                        <span class="px-3 py-1 bg-gray-900/70 backdrop-blur-sm text-xs font-semibold rounded-full text-white">Wallets</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-white mt-2">Nova Wallet</h3>
+                    <p class="text-gray-400 text-sm mt-1">Leading mobile wallet for Polkadot</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 4: Disclaimer (Screenshot 205351.png) -->
+    <section class="py-16 px-4 sm:px-8 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold text-white mb-6">Disclaimer</h2>
+        <div class="max-w-4xl text-gray-400 space-y-6 text-lg">
+            <p>
+                The list of dapps on this page does not constitute an endorsement and is not exhaustive of all dapps available in the Polkadot ecosystem. Always do your own research before choosing a dapp, and consider consulting a tax and legal advisor as the use of dapps may have tax and legal consequences which are complex and changeable depending on individual circumstances. Learn more on our
+                <a href="#" class="text-white hover:text-gray-300 underline font-semibold">disclaimer page</a>.
+            </p>
+            <p>
+                The list includes apps that are running on Polkadot or its rollups (i.e., parachains), that are end-user oriented, with TVL, and active community in social networks. If your dapp fulfills these criteria and is not listed here,
+                <a href="#" class="text-white hover:text-gray-300 underline font-semibold">submit a form</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900/50 border-t border-gray-900 mt-16">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-8 lg:py-16">
+            <div class="xl:grid xl:grid-cols-4 xl:gap-8">
+                <!-- Column 1: Logo & Social -->
+                <div class="space-y-4 xl:col-span-1">
+                    <div class="flex items-center space-x-2">
+                        <!-- Mock Polkadot Logo Icon -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" fill="#E6007A"/>
+                            <circle cx="8" cy="8" r="2" fill="#FFFFFF"/>
+                            <circle cx="16" cy="8" r="2" fill="#FFFFFF"/>
+                            <circle cx="8" cy="16" r="2" fill="#FFFFFF"/>
+                            <circle cx="16" cy="16" r="2" fill="#FFFFFF"/>
+                        </svg>
+                        <span class="text-xl font-bold italic text-white">Polkadot</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        The multichain future starts here.
+                    </p>
+                    <div class="flex space-x-4">
+                        <!-- Simple social icons mock -->
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.162 5.656a8.384 8.384 0 01-2.357.656 4.195 4.195 0 001.814-2.274 8.36 8.36 0 01-2.671 1.012 4.192 4.192 0 00-7.144 3.814 11.859 11.859 0 01-8.6-4.379 4.197 4.197 0 001.298 5.584 4.168 4.168 0 01-1.897-.524v.052a4.194 4.194 0 003.364 4.116 4.214 4.214 0 01-1.889.072 4.19 4.19 0 003.92 2.906 8.423 8.423 0 01-5.207 1.8 11.88 11.88 0 006.588 1.932c7.904 0 12.238-6.574 12.238-12.238 0-.188-.004-.376-.012-.563a8.7 8.7 0 002.13-2.219z" /></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-150">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.122 6.839 9.475.5.092.682-.217.682-.483 0-.237-.008-.867-.013-1.703-2.782.605-3.368-1.343-3.368-1.343-.455-1.15-.111-1.701-.111-1.701.99-.68 1.493.076 1.493.076.878 1.48 2.345 1.05 2.918.8 0-.626.342-1.05.684-1.293-2.643-.295-5.419-1.325-5.419-5.926 0-1.31.472-2.38 1.239-3.224-.124-.319-.536-1.524.118-3.176 0 0 1.008-.322 3.301 1.23A11.777 11.777 0 0112 5.04c1.233.007 2.465.174 3.656.516 2.292-1.552 3.3-1.23 3.3-1.23.654 1.652.242 2.857.118 3.176.767.844 1.239 1.914 1.239 3.224 0 4.61-2.783 5.621-5.431 5.917.34.29.673.818.673 1.649 0 1.185-.011 2.15-.011 2.457 0 .26.181.583.687.484C19.043 20.187 22 16.483 22 12.017 22 6.484 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Resources -->
+                <div class="mt-12 md:mt-0 xl:col-span-1">
+                    <h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">Resources</h3>
+                    <ul role="list" class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Polkadot Wiki</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Polkadot Blog</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Support</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Brand Assets</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Ecosystem -->
+                <div class="mt-12 md:mt-0 xl:col-span-1">
+                    <h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">Ecosystem</h3>
+                    <ul role="list" class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Parachains</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Projects</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white transition duration-150">Substrate</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Stay Connected -->
+                <div class="mt-12 md:mt-0 xl:col-span-1">
+                    <h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">Stay Connected</h3>
+                    <p class="mt-4 text-base text-gray-400">
+                        Subscribe to our newsletter for the latest updates.
+                    </p>
+                    <form class="mt-4 flex space-x-2">
+                        <input type="email" placeholder="Email address" class="w-full px-4 py-2 bg-gray-700/50 border border-gray-700 rounded-lg text-white focus:ring-pink-500 focus:border-pink-500 text-sm">
+                        <button type="submit" class="bg-pink-600 text-white p-2 rounded-lg hover:bg-pink-700 transition duration-150">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="mt-12 border-t border-gray-800 pt-8">
+                <p class="text-base text-gray-500 md:text-center">
+                    &copy; 2024 Polkadot. All rights reserved. |
+                    <a href="#" class="hover:text-white transition duration-150">Terms of Use</a> |
+                    <a href="#" class="hover:text-white transition duration-150">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

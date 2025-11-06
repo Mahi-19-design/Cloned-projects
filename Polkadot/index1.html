@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body{
+    background-color: black;
+}
+.nav{
+    display: flex;
+    color: white;
+    margin-top:20px;
+    background-color: #ffffff;
+    border-radius: 40px;
+    border: 2px solid grey;
+      width: 900px;
+    /* background: radial-gradient(circle at top, blue ,rgb(2, 141, 169) ,black); */
+z-index:1;
+}
+.img{
+    width: 200px;
+    margin: 5px;
+    margin-left: 20px;
+    padding-right: 20px;
+border-right: 2px solid grey;
+/* margin-top: -5px; */
+}
+.text{
+    color: rgb(0, 0, 0);
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 20px;
+    margin-top: 29px;
+    font-weight: 600;
+}
+.moon{
+    margin-top: 20px;
+    margin-left: 15px;
+}
+.search{
+       margin-top: 20px;
+    margin-left: 15px;
+}
+.p1{
+    margin-top: px;
+    z-index: 0;
+}
+.para{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+}
+.para1{
+     color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin-top: -30px;
+    /* font-weight: 600 */
+}
+.block2{
+    margin: 50px;
+    margin-left: 70px;
+}
+.div{
+    display: flex;
+}
+.d1{
+border: 1px solid grey;
+padding: 40px;
+border-radius: 30px;
+margin-top: 20px;
+margin-left: 30px;
+/* text-align: center; */
+}
+.para1{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    /* padding: 10px; */
+    margin-top: 10px;
+}
+.para12{
+     color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+    /* font-weight: 600 */
+    /* padding: 10px; */
+}
+.div{
+    margin-left: 30px;
+}
+.para2{
+       color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+}
+.para123{
+       color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    /* padding: 10px; */
+    margin-top: 10px;
+}
+.b2{
+        margin: 50px;
+    margin-left: 70px;
+}
+.r1{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    /* padding: 10px; */
+    margin-top: 10px;
+    /* float: right; */
+    /* margin-left: -1000px; */
+    /* display: inline; */
+}
+.r2{
+        color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+    /* display: inline; */
+    /* font-weight: 600 */
+    /* padding: 10px; */
+    /* float: right; */
+    
+
+}
+.t1{
+    /* display: flex; */
+border: 1px solid grey;
+border-radius: 30px;
+padding: 20px;
+width: 400px;
+display: flex;
+margin-left: 30px;
+margin-bottom: 30px;
+}
+.m{
+    margin-left: 10px;
+    margin-top: 15px;
+}
+.block{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+     .footer{
+display: flex;
+color: white;
+text-decoration: none;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-size: 16px;
+margin: 20px;
+     }
+.foot{
+    margin: 50px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+.space-y-3-text-gray-400{
+    color: white;
+
+}
+a{
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+    </style>
+</head>
+<body>
+    <div container>
+<div class="nav">
+    <img class="img" src="data:image/png;base64,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" alt="">
+<a href="./index1.html"><p class="text" >Get Started</p> </a>
+<a href="./index23.html"><p class="text">Platform</p></a>
+<p class="text" >Developers</p>
+<p class="text">Solutions</p>
+<p class="text">Community</p>
+<img  class="moon" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-8tYTKony_3qAkep7hmt1VyZ-zvB86Z4m5w&s" alt="" width="20px" height="30px">
+<img class="search"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcq6SSjfDrfuHbhNH75c2bad-TLpgGrJcTzA&s" alt="" width="20px" height="30px">
+</div>
+<div class="p1">
+    <img src="./Screenshot 2025-11-01 110642.png" alt="">
+</div>
+<div class="block2">
+    <p class="para"> One Platform.Two paths to bulid.</p>
+    <pre class="para1">Polkadot gives you the freedom to build your way—seamlessly deploy Ethereum-compatible smart contracts or design a
+custom blockchain with full control and scalable architecture. Build faster, smarter, and without limits.</pre>
+<!-- <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKUAAACUCAMAAADF0xngAAAAWlBMVEX///8IFhcAAAD///2tsbCprayAg4Pg4OD8/PwJFRkAExTJy8t5fX3Z291obGzb3NxvcnRXW1y8vr5PVlW4ubsACQbP0dIPEhEaHx9iZWbv8fGjp6cABgoADQ5TH0CQAAAA+ElEQVR4nO3Y6U4CMRSAUdoRZlhkcUFBef/XlGoM4h9MQ2eRc16AL7dpp2U0AgAAAAAAAAAAgNtWVV0XXNQ8zbtO+INm8by47zriomYSY1xuu8644FgZQoyTfnd+VoZZfFmumv7uo6/K1BnX7cyzyvBdeRRfd3UrnRlOlWmem21T9Nf2b+Msm/fwQzysi56fdcxzCGfSPOfl5lnHabiKtI8eel8Z0rrvCu33a1ameT4WWffbqxzAihfePZkn0fR3Y8mTaD++y9LuqZ6r3S9kptNtY9bj20b7N7ccZ7fg3hrMi2IIr7NhvHQH8a8BAAAAAAAAAAAA/Hsf5v0NLvJPjJUAAAAASUVORK5CYII=" alt=""> -->
+</div>
+
+<div class="div">
+
+<div class="d1">
+<p class="para1">Rollups with SDK</p>
+<pre class="para12">Build custom rollups or appchains with full control of execution,
+governance, economics, and forkless upgrades. </pre>
+</div>
+
+
+<div class="d1">
+<p class="para1">Smart Contracts on Hub (coming Soon!)</p>
+<pre class="para12">Deploy fast using the Ethereum-compatible tools you already know then
+run them at Polkadot speed, scale, and reliability. </pre>
+</div>
+
+</div>
+
+<div class="b2">
+<p class="para2">The protocol layer powering it all</p>
+<pre class="para123">The Polkadot Chain (aka Relay Chain) is the backbone of the network—a decentralized protocol that secures, connects, 
+and coordinates every chain. Your rollups and smart contracts run on resilient, shared infrastructure.</pre>
+</div>
+
+<div class="block">
+<div class="t1">
+<img src="./Screenshot 2025-11-01 115125.png" alt="" width="80px">
+<div class="m">
+<p class="r1">Shared validator set</p>
+<pre class="r2">Robust economic security without
+needing your own validator network.</pre>
+</div>
+</div>
+
+<div class="t1">
+<img src="./Screenshot 2025-11-01 115131.png" alt="" width="80px">
+<div class="m">
+<p class="r1">Shared validator set</p>
+<pre class="r2">Robust economic security without
+needing your own validator network.</pre>
+</div>
+</div>
+
+<div class="t1">
+<img src="./Screenshot 2025-11-01 115149.png" alt="" width="80px">
+<div class="m">
+<p class="r1">Shared validator set</p>
+<pre class="r2">Robust economic security without
+needing your own validator network.</pre>
+</div>
+</div>
+
+<div class="t1">
+<img src="./Screenshot 2025-11-01 115155.png" alt="" width="80px">
+<div class="m">
+<p class="r1">Shared validator set</p>
+<pre class="r2">Robust economic security without
+needing your own validator network.</pre>
+</div>
+</div>
+</div>
+    
+</div>
+    <footer class="bg-black border-t border-gray-800 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Top Row: Logo and Social Icons -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM20 10.375C17.4392 10.375 15.375 12.4392 15.375 15C15.375 17.5608 17.4392 19.625 20 19.625C22.5608 19.625 24.625 17.5608 24.625 15C24.625 12.4392 22.5608 10.375 20 10.375ZM15.375 25C17.9358 25 20 22.9358 20 20.375C20 17.8142 17.9358 15.75 15.375 15.75C12.8142 15.75 10.75 17.8142 10.75 20.375C10.75 22.9358 12.8142 25 15.375 25ZM29.25 20C31.8108 20 33.875 17.9358 33.875 15.375C33.875 12.8142 31.8108 10.75 29.25 10.75C26.6892 10.75 24.625 12.8142 24.625 15.375C24.625 17.9358 26.6892 20 29.25 20ZM24.625 25C27.1858 25 29.25 22.9358 29.25 20.375C29.25 17.8142 27.1858 15.75 24.625 15.75C22.0642 15.75 20 17.8142 20 20.375C20 22.9358 22.0642 25 24.625 25Z" fill="#E6007A"/>
+                    </svg>
+                    <span class="text-2xl font-semibold">Polkadot</span>
+                </div>
+
+                <div class="flex space-x-4">
+                    <!-- Social Icons (Simulated with Lucide Icons) -->
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="youtube" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="github" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    <a href="#" class="p-2 hover:text-dot-pink transition"><i data-lucide="send" class="w-6 h-6"></i></a>
+                </div>
+            </div>
+
+            <!-- Main Footer Links Grid -->
+            <div class="footer">
+                <!-- Column 1: Get Started -->
+                <div class="foot">
+                    <h5 class="text-base font-semibold mb-4 uppercase">Get Started</h5>
+                    <ul class="space-y-3-text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">DOT Token</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot Wallets</a></li>
+                        <li><a href="#" class="hover:text-white transition">Staking</a></li>
+                        <li><a href="#" class="hover:text-white transition">Dapps</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bridges</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Platform -->
+                <div class="foot">
+                    <h5 class="text-base font-semibold mb-4 uppercase">Platform</h5>
+                    <ul class="space-y-3-text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Polkadot SDK</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot Chain</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot DAO</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot Hub</a></li>
+                        <li><a href="#" class="hover:text-white transition">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition">Use Cases</a></li>
+                        <li><a href="#" class="hover:text-white transition">Papers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Smart Contracts</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Developers -->
+                <div class="foot">
+                    <h5 class="text-base font-semibold mb-4 uppercase">Developers</h5>
+                    <ul class="space-y-3-text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Grants & Funding</a></li>
+                        <li><a href="#" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="#" class="hover:text-white transition">Documentation <i data-lucide="arrow-up-right" class="inline-block w-3 h-3 ml-0.5"></i></a></li>
+                        <li><a href="#" class="hover:text-white transition">Blockchain Academy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Parity Bug Bounty</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bridges Bug Bounty</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Community -->
+                <div class="foot"> 
+                    <h5 class="text-base font-semibold mb-4 uppercase">Community</h5>
+                    <ul class="space-y-3-text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Newsroom</a></li>
+                        <li><a href="#" class="hover:text-white transition">Decentralized Jobs</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ambassador Program</a></li>
+                        <li><a href="#" class="hover:text-white transition">Events</a></li>
+                        <li><a href="#" class="hover:text-white transition">Brand Hub</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Polkadot.com GitHub <i data-lucide="arrow-up-right" class="inline-block w-3 h-3 ml-0.5"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: Solutions (The screenshots only show a partial list, so this is an educated guess) -->
+                <div class="foot">
+                    <h5 class="text-base font-semibold mb-4 uppercase">Solutions</h5>
+                    <ul class="space-y-3-text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">AI</a></li>
+                        <li><a href="#" class="hover:text-white transition">Business</a></li>
+                        <li><a href="#" class="hover:text-white transition">DeFi</a></li>
+                        <li><a href="#" class="hover:text-white transition">Gaming</a></li>
+                        <li><a href="#" class="hover:text-white transition">Creator Economy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Legal/Meta Row -->
+            <div class="mt-16 border-t border-gray-900 pt-6 text-xs text-gray-500 flex flex-col sm:flex-row justify-between space-y-3 sm:space-y-0">
+                <p>&copy; 2025 Web3 Foundation</p>
+                <div class="flex flex-wrap space-x-4">
+                    <a href="#" class="hover:text-white transition">Legal Disclosures</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>
