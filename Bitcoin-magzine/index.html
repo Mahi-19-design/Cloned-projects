@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Magazine - Bitcoin News, Articles and Expert Insights</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #1a1a1a;
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: #ff9800;
+            color: #000;
+            padding: 0.8rem 5%;
+            text-align: center;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .newsletter-btn {
+            background: #000;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background: #333;
+        }
+
+        /* Secondary Nav */
+        .secondary-nav {
+            background: #000;
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .secondary-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .secondary-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .secondary-links a:hover {
+            color: #ff9800;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: #ff9800;
+        }
+
+        /* Main Navigation */
+        nav {
+            background-color: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #ff9800;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #000;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links a:hover {
+            color: #ff9800;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #000;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* Banner Ad */
+        .banner-ad {
+            width: 100%;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .banner-ad img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Today's Picks Section */
+        .todays-picks {
+            padding: 3rem 5%;
+            background: #f8f8f8;
+        }
+
+        .section-title {
+            background: #ff9800;
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        .picks-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .main-pick {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .main-pick img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pick-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .category-badge {
+            background: #ff9800;
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .pick-overlay h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .pick-meta {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .side-picks {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .side-pick {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 230px;
+        }
+
+        .side-pick img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .side-pick .pick-overlay h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 4rem 5%;
+            background: #fff;
+            border: 3px solid #000;
+            margin: 3rem 5%;
+        }
+
+        .newsletter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .newsletter-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .newsletter-content p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #000;
+            border-right: none;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: #ff9800;
+            color: #000;
+            padding: 1rem 2rem;
+            border: 2px solid #000;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #f57c00;
+        }
+
+        .newsletter-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Articles Grid */
+        .articles-section {
+            padding: 3rem 5%;
+            background: #fff;
+        }
+
+        .articles-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-content .category-badge {
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .article-content h3 a {
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .article-content h3 a:hover {
+            color: #ff9800;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 3rem 5%;
+            background: #f8f8f8;
+        }
+
+        .video-player {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .video-player video {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-list {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .video-item {
+            background: #000;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .video-item:hover {
+            background: #333;
+        }
+
+        .video-item h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-item p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Authors Section */
+        .authors-section {
+            padding: 3rem 5%;
+            background: #ff9800;
+            text-align: center;
+        }
+
+        .authors-list {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .author-name {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .author-name:hover {
+            opacity: 0.8;
+        }
+
+        /* Sidebar Widgets */
+        .sidebar-widget {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .widget-title {
+            background: #ff9800;
+            color: #000;
+            padding: 0.5rem 1rem;
+            margin: -1.5rem -1.5rem 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Store Section */
+        .store-section {
+            padding: 3rem 5%;
+            background: #fff;
+        }
+
+        .store-grid {
+            max-width: 1400px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            text-align: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .add-to-cart-btn {
+            background: #ff9800;
+            color: #000;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #f57c00;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 4rem 5%;
+            background: #000;
+            color: #fff;
+        }
+
+        .mission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mission-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .mission-content h2 {
+            color: #ff9800;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .mission-content p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Ad Section */
+        .ad-section {
+            padding: 3rem 5%;
+            background: #ff9800;
+            text-align: center;
+        }
+
+        .ad-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .ad-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .ad-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: #000;
+            color: #fff;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #333;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #ff9800;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff9800;
+        }
+
+        .category-count {
+            color: #666;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .picks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-container,
+            .mission-container {
+                grid-template-columns: 1fr;
+            }
+
+            .store-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .secondary-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .secondary-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .main-pick {
+                height: 400px;
+            }
+
+            .pick-overlay h2 {
+                font-size: 1.5rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .store-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .authors-list {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .main-pick,
+            .side-pick {
+                height: 300px;
+            }
+
+            .pick-overlay {
+                padding: 1rem;
+            }
+
+            .pick-overlay h2 {
+                font-size: 1.2rem;
+            }
+
+            .newsletter-content h2,
+            .mission-content h2,
+            .ad-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <span>BITCOIN ALPHA IN YOUR INBOX EVERY WEEKDAY</span>
+        <a href="https://bitcoinmagazine.com/newsletter" class="newsletter-btn">FREE NEWSLETTER</a>
+    </div>
+
+    <!-- Secondary Nav -->
+    <div class="secondary-nav">
+        <ul class="secondary-links">
+            <li><a href="https://store.bitcoinmagazine.com/">STORE</a></li>
+            <li><a href="https://store.bitcoinmagazine.com/collections/magazines">PRINT</a></li>
+            <li><a href="https://store.bitcoinmagazine.com/collections/books">BOOKS</a></li>
+            <li><a href="https://b.tc/conference?__hstc=116515481.e820a5bd7d15e9db5f594b67da697841.1765639754368.1765813911619.1765828976426.14&__hssc=116515481.1.1765828976426&__hsfp=3635728165">CONFERENCE</a></li>
+            <li><a href="https://bitcoinforcorporations.com/?__hstc=116515481.e820a5bd7d15e9db5f594b67da697841.1765639754368.1765813911619.1765828976426.14&__hssc=116515481.1.1765828976426&__hsfp=3635728165">CORPORATIONS</a></li>
+            <li><a href="https://www.utxo.management/">UTXO</a></li>
+            <li><a href="https://www.bitcoinmagazinepro.com/">PRO</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://bitcoinmagazine.com/articles" class="social-icon">📘</a>
+            <a href="https://bitcoinmagazine.com/guides" class="social-icon">𝕏</a>
+            <a href="https://bitcoinmagazine.com/bitcoin-glossary" class="social-icon">▶</a>
+            <a href="https://bitcoinmagazine.com/bitcoin-price" class="social-icon">🎧</a>
+            <a href="https://bitcoinmagazine.com/#" class="social-icon">in</a>
+            <a href="https://bitcoinmagazine.com/duelbits" class="social-icon">📷</a>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="bitcoin-magazine-logo.png" alt="Bitcoin Magazine">
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index1.html">📰 NEWS</a></li>
+            <li><a href="https://bitcoinmagazine.com/guides">📖 GUIDES</a></li>
+            <li><a href="https://bitcoinmagazine.com/bitcoin-glossary">📕 GLOSSARY</a></li>
+            <li><a href="https://www.bitcoinmagazinepro.com/charts/">📊 CHARTS</a></li>
+            <li><a href="./index2.html">💰 BITCOIN PRICE</a></li>
+            <li><a href="https://bitcoinmagazine.com/#">🛠️ TOOLS</a></li>
+            <li><a href="https://bitcoinmagazine.com/duelbits">WIN BITCOIN 🎲</a></li>
+        </ul>
+        <button class="search-btn">🔍</button>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Today's Picks -->
+    <section class="todays-picks">
+        <div class="section-title">TODAY'S PICKS</div>
+        <div class="picks-grid">
+            <div class="main-pick">
+                <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/tn-trump-keonne-696x365.webp" alt="Trump Bitcoin">
+                <div class="pick-overlay">
+                    <span class="category-badge">POLITICS</span>
+                    <h2>Why Trump Should Pardon The Developers of Bitcoins Non Custodial Samourai Wallet</h2>
+                    <p class="pick-meta">Juan Galt - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="side-picks">
+                <div class="side-pick">
+                    <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/Nearly-Two%E2%80%91Thirds-of-Corporate-Bitcoin-Treasuries-Are-Underwater-Report-324x400.jpg" alt="Corporate Treasuries">
+                    <div class="pick-overlay">
+                        <span class="category-badge">FEATURED</span>
+                        <h3>65% of Corporate Bitcoin Treasuries Are Underwater: Report</h3>
+                    </div>
+                </div>
+                <div class="side-pick">
+                    <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/2-324x400.webp" alt="Samourai Wallet">
+                    <div class="pick-overlay">
+                        <span class="category-badge">POLITICS</span>
+                        <h3>The Samourai Wallet Trial: A Test of Financial Privacy and Developer Freedoms</h3>
+                    </div>
+                </div>
+                <!-- <div class="side-pick">
+                    <img src="msci-strategy.jpeg" alt="MSCI Strategy">
+                    <div class="pick-overlay">
+                        <span class="category-badge">BUSINESS</span>
+                        <h3>Strategy Formally Urges MSCI to Keep Digital Asset Treasury Companies on Global Indexes</h3>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2>BITCOIN MAGAZINE<br>DAILY NEWS</h2>
+                <p>Bitcoin alpha every weekday, sent straight to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="newsletter-image">
+                <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/06/Daily-News-LP-Graphic-Right-485x360.png" alt="Newsletter">
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Articles -->
+    <section class="articles-section">
+        <div class="section-title">LATEST ARTICLES</div>
+        <div class="articles-grid">
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/Coinbase-is-About-to-Launch-Prediction-Markets-and-Tokenized-Stocks-Report-696x392.jpg" alt="Coinbase">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">NEWS</span>
+                    <h3><a href="#">Coinbase is About to Launch Prediction Markets and Tokenized Stocks: Report</a></h3>
+                    <p class="article-meta">Micah Zimmerman - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/Bitcoin-Falls-Below-90000-As-Vanguard-Exec-Struggles-With-Bitcoin-Value--696x392.jpg" alt="Bitcoin">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">MARKETS</span>
+                    <h3><a href="#">Bitcoin Falls Below $90,000 As Vanguard Exec Struggles With Bitcoin Value</a></h3>
+                    <p class="article-meta">Micah Zimmerman - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/Five-Crypto-Firms-Win-Conditional-Approvals-as-National-Trust-Banks-Including-Fidelity-and-BitGo-696x392.jpg" alt="Crypto Firms">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">NEWS</span>
+                    <h3><a href="#">Five Crypto Firms Win Conditional Approvals as National Trust Banks, Including
+                            Fidelity and BitGo</a></h3>
+                    <p class="article-meta">Micah Zimmerman - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/tn-trump-keonne-696x365.webp" alt="Trump">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">POLITICS</span>
+                    <h3><a href="#">Why Trump Should Pardon The Developers of Bitcoins Non Custodial Samourai Wallet</a>
+                    </h3>
+                    <p class="article-meta">Juan Galt - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/Sangha-Renewables-Energizes-20-MW-Bitcoin-Mining-Facility-in-West-Texas-696x392.jpg" alt="Sangha">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">NEWS</span>
+                    <h3><a href="#">Sangha Renewables Energizes 20 MW Bitcoin Mining Facility in West Texas</a></h3>
+                    <p class="article-meta">Micah Zimmerman - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="http://127.0.0.1:5500/pakistan-crypto.jpeg" alt="Pakistan">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">NEWS</span>
+                    <h3><a href="#">Pakistan Begins Crypto Overhaul With Preliminary Exchange Approvals</a></h3>
+                    <p class="article-meta">Micah Zimmerman - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="http://127.0.0.1:5500/Bitcoin-Price-Forecast-Tools-and-Cycle-Valuation-Metrics.jpeg"
+                        alt="Bitcoin-Price-Forecast">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">MARKETS</span>
+                    <h3><a href="#">Bitcoin Price Forecast Tools and Cycle Valution Metrics</a></h3>
+                    <p class="article-meta">Matt Crosby - December 12, 2025</p>
+                </div>
+            </div>
+            <div class="article-card">
+                <div class="article-image">
+                    <img src="http://127.0.0.1:5500/9-Ways-MSCIs.webp" alt="9-Ways-MSCIs">
+                </div>
+                <div class="article-content">
+                    <span class="category-badge">BITCOIN FOR CORPORATIONS</span>
+                    <h3><a href="#">9 Ways MSCI's Proposed Digital Asset Rule Could Undermine Index Neutrality</a></h3>
+                    <p class="article-meta">NICK WARD - December 12, 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="section-title">LATEST VIDEOS ON YOUTUBE</div>
+        <div class="video-player">
+            <!-- <video controls="auto" poster="video-thumbnail.png"></video> -->
+            <iframe width="1200" height="680" src="https://www.youtube.com/embed/Nm8FKhIWVj4?si=6itWZ892lTAcHWjm"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        </div>
+        <div class="video-list">
+            <div class="video-item">
+                <h4>David Bailey: How Bitcoin Will "Hijack" the Financial System</h4>
+                <p>December 12, 2025</p>
+            </div>
+            <div class="video-item">
+                <h4>Comparo: Two Workshops & Killing QN Realls Club | Bitcoin 2025</h4>
+                <p>December 11, 2025</p>
+            </div>
+            <div class="video-item">
+                <h4>Bitcoin's Evolving Market Dynamics w/ Ron Corwen, National Silver | Q3 2025</h4>
+                <p>December 10, 2025</p>
+            </div>
+            <div class="video-item">
+                <h4>Will MSTR Consider Share Buybacks? | Strategy Q3 2025</h4>
+                <p>December 9, 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authors Section -->
+    <section class="authors-section">
+        <div class="section-title">MEET THE AUTHORS</div>
+        <div class="authors-list">
+            <a href="https://bitcoinmagazine.com/authors/shinobi" class="author-name">Shinobi</a>
+            <a href="https://bitcoinmagazine.com/authors/micahzimmerman" class="author-name">Micah Zimmerman</a>
+            <a href="https://bitcoinmagazine.com/authors/nik" class="author-name">Nikolaus Hoffman</a>
+            <a href="https://bitcoinmagazine.com/authors/vivek-sen-bitcoin" class="author-name">Vivek Sen</a>
+            <a href="https://bitcoinmagazine.com/authors/juan-galt" class="author-name">Juan Galt</a>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section class="store-section">
+        <div class="section-title">BITCOIN MAGAZINE STORE PRODUCT SHOWCASE</div>
+        <div class="store-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="http://127.0.0.1:5500/genesis-book.webp" alt="The Genesis Book">
+                </div>
+                <h3>The Genesis Book</h3>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="http://127.0.0.1:5500/bitcoin-dollar-book.webp" alt="The Bitcoin Dollar Book">
+                </div>
+                <h3>The Bitcoin Dollar Book</h3>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="http://127.0.0.1:5500/satoshi-papers.webp" alt="The Satoshi Papers">
+                </div>
+                <h3>The Satoshi Papers</h3>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="http://127.0.0.1:5500/fiat-ruins.webp" alt="Fiat Ruins Everything">
+                </div>
+                <h3>Fiat Ruins Everything</h3>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="section-title">BITCOIN MAGAZINE'S STORY</div>
+        <div class="mission-container">
+            <div class="mission-image">
+                <img src="https://bitcoinmagazine.com/wp-content/uploads/2025/12/Bitcoin-Price-Bleeds-Below-89000-After-Grim-Weekend--696x392.jpg" alt="Bitcoin Conference">
+            </div>
+            <div class="mission-content">
+                <h2>Our Mission is Unchanged</h2>
+                <p>Bitcoin Magazine is the oldest and most established source of news, information and expert commentary
+                    on Bitcoin, its underlying blockchain technology and the industry that has been built up around it.
+                </p>
+                <p>Since 2012, Bitcoin Magazine has provided analysis, research, education and thought leadership at the
+                    intersection of finance and technology.</p>
+            </div>
+        </div>
+    </section>
+
+
+   
+    
+    <!-- Ad Section -->
+    <section class="ad-section">
+        <div class="ad-content">
+            <h2>Advertise with us</h2>
+            <p>Amplify your brand with the world's first and most trusted Bitcoin media company. Every year, millions of
+                people with diverse interests depend on Bitcoin Magazine for the most reliable, accurate, timely and
+                relevant content. We are trusted by the Bitcoin community to inform and enlighten with quality stories
+                that meet our stringent editorial and journalistic standards.</p>
+            <button class="cta-button">GET IN TOUCH →</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EDITOR PICKS</h3>
+                <ul>
+                    <li><a href="https://bitcoinmagazine.com/featured/president-harris-buy-bitcoin-pay-black-americans-reparations">President Harris Should Buy Bitcoin to Pay Black Americans Reparations</a></li>
+                    <li><a href="https://bitcoinmagazine.com/featured/blackrock-ceo-is-right-trump-and-kamala-cant-stop-bitcoin">VIVEK: Larry Fink Is Right: Trump and Kamala Can't Stop Bitcoin</a></li>
+                    <li><a href="https://bitcoinmagazine.com/featured/what-do-bitcoin-miners-expect-next">What Do Bitcoin Miners Expect Next?</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>POPULAR POSTS</h3>
+                <ul>
+                    <li><a href="https://bitcoinmagazine.com/takes/anchors-are-evil-bitcoin-core-is-destroying-bitcoin">Anchors Are Evil! Bitcoin Core Is Destroying Bitcoin!</a></li>
+                    <li><a href="https://bitcoinmagazine.com/takes/canada-can-elect-the-next-bitcoin-world-leader">Canada Can Elect The Next Bitcoin World Leader</a></li>
+                    <li><a href="https://bitcoinmagazine.com/markets/new-pi-cycle-top-prediction-chart-identifies-bitcoin-price-market-peaks-with-precision">New Pi.Cycle Top Prediction Chart Identifies Bitcoin Price Market Peaks with
+                            Precision</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>CATEGORIES</h3>
+                <ul>
+                    <li><a href="https://bitcoinmagazine.com/business">BUSINESS <span class="category-count">4263</span></a></li>
+                    <li><a href="https://bitcoinmagazine.com/culture">CULTURE <span class="category-count">3556</span></a></li>
+                    <li><a href="https://bitcoinmagazine.com/markets">MARKETS <span class="category-count">2279</span></a></li>
+                    <li><a href="https://bitcoinmagazine.com/technical">TECHNICAL <span class="category-count">1321</span></a></li>
+                    <li><a href="https://bitcoinmagazine.com/news">NEWS <span class="category-count">694</span></a></li>
+                    <li><a href="https://bitcoinmagazine.com/industry-events">INDUSTRY EVENTS <span class="category-count">364</span></a></li>
+                    <li><a href="https://bitcoinmagazine.com/press-releases">PRESS RELEASES <span class="category-count">284</span></a></li>
+                    <li><a href="https://bitcoinmagazine.com/legal">LEGAL <span class="category-count">201</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bitcoin Magazine. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

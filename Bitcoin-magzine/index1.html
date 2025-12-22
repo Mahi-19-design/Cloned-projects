@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Magazine - Full Layout Replication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+      
+        .article-card-overlay {
+            background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%);
+        }
+        .text-shadow-custom {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body class="font-sans bg-white text-gray-800">
+
+    <!-- Top Info Bar -->
+    <div class="bg-dark-bg text-white text-center text-xs py-2">
+        BITCOIN ALPHA IN YOUR INBOX EVERY WEEKDAY <span class="mx-2 text-dark-gray-text">|</span>
+        <a href="#" class="font-bold hover:text-bitcoin-orange">FREE NEWSLETTER</a>
+    </div>
+
+    <!-- Main Header/Navigation -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Top Nav -->
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-6">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 mr-2 text-bitcoin-orange" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm.707 12.707a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L9 12.586V7a1 1 0 112 0v5.586l.293-.293a1 1 0 011.414 1.414l-2 2z"></path>
+                        </svg>
+                        <span class="font-black text-2xl text-dark-bg">BITCOIN</span>
+                    </div>
+
+                    <!-- Store Links (Hidden on small screens) -->
+                    <nav class="hidden md:flex space-x-4 text-sm font-medium">
+                        <a href="#" class="text-gray-600 hover:text-bitcoin-orange">STORE</a>
+                        <a href="#" class="text-gray-600 hover:text-bitcoin-orange">PRINT</a>
+                        <a href="#" class="text-gray-600 hover:text-bitcoin-orange">BOOKS</a>
+                        <a href="#" class="text-gray-600 hover:text-bitcoin-orange">CONFERENCE</a>
+                        <a href="#" class="text-gray-600 hover:text-bitcoin-orange">CORPORATIONS</a>
+                        <a href="#" class="text-gray-600 hover:text-bitcoin-orange">UTXO PRO</a>
+                    </nav>
+                </div>
+
+                <!-- Social Icons & Ad (Hidden on small screens) -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden lg:block text-xs font-semibold text-gray-500">
+                        <a href="#" class="hover:text-bitcoin-orange">Available NOW THE FINANCE ISSUE</a>
+                        <img src="https://placehold.co/100x30/F7931A/white?text=GET+YOURS" alt="Ad" class="ml-2 inline-block rounded-md">
+                    </div>
+                    <div class="text-gray-600 hidden md:flex space-x-3">
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub Nav -->
+            <nav class="flex justify-start items-center space-x-6 h-12 text-sm font-bold border-t border-gray-100">
+                <a href="#" class="flex items-center text-gray-900 hover:text-bitcoin-orange">NEWS <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
+                <a href="#" class="flex items-center text-gray-900 hover:text-bitcoin-orange hidden sm:flex">GUIDES <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
+                <a href="#" class="text-gray-900 hover:text-bitcoin-orange hidden lg:block">GLOSSARY</a>
+                <a href="#" class="text-gray-900 hover:text-bitcoin-orange hidden lg:block">CHARTS</a>
+                <a href="#" class="text-gray-900 hover:text-bitcoin-orange hidden md:block">BITCOIN PRICE</a>
+                <a href="#" class="flex items-center text-gray-900 hover:text-bitcoin-orange hidden sm:flex">TOOLS <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
+                <a href="#" class="text-gray-900 hover:text-bitcoin-orange hidden md:block">WIN BITCOIN</a>
+                <a href="#" class="ml-auto text-gray-900 hover:text-bitcoin-orange"><i class="fas fa-search"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- TODAY'S PICKS SECTION -->
+        <div class="mb-8">
+            <h2 class="inline-block bg-bitcoin-orange text-white text-xs font-bold px-3 py-1 mb-6 rounded-md uppercase">TODAY'S PICKS</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+               
+    
+           
+                <!-- Google News Update Widget (Screenshot 140244.jpg) -->
+                <div class="p-6 bg-white border border-gray-200 rounded-lg text-center shadow-md">
+                    <div class="flex justify-center items-center mb-3">
+                        <span class="font-black text-xl text-dark-bg">BITCOIN</span>
+                        <span class="text-xs font-bold text-bitcoin-orange ml-1">MAGAZINE</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-2">Never Miss an Update</h4>
+                    <button class="flex items-center justify-center w-full bg-blue-500 text-white font-bold py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                        <i class="fab fa-google text-lg mr-2"></i> FOLLOW ON Google News
+                    </button>
+                </div>
+
+                <!-- Crypto Price Widget (Screenshot 140300.jpg) -->
+                <div class="p-4 bg-dark-bg text-white rounded-lg shadow-md">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-bold uppercase text-bitcoin-orange">Available for free in the</span>
+                        <span class="text-xs font-bold">Chrome Web Store</span>
+                    </div>
+                    <p class="text-sm mb-4">Add live Bitcoin price, news, and network metrics to your web browser</p>
+
+                    <div class="bg-[#2A2A2A] p-4 rounded-md">
+                        <div class="flex justify-between items-end mb-4 border-b border-gray-600 pb-2">
+                            <div class="text-xs uppercase text-gray-400">BTC/USD</div>
+                            <div class="text-xs uppercase text-gray-400">RATE PER HOUR</div>
+                            <div class="text-xs uppercase text-gray-400">VOL (24H)</div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="text-3xl font-extrabold text-green-500">$97,468.38</div>
+                            <div class="text-lg font-bold text-green-500">1026</div>
+                            <div class="text-lg font-bold text-white">3</div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-600">
+                            <div>
+                                <div class="text-xs uppercase text-gray-400">HASH RATE (24h)</div>
+                                <div class="font-bold text-sm">87.1973 PH/s</div>
+                            </div>
+                            <div>
+                                <div class="text-xs uppercase text-gray-400">MARKET CAP</div>
+                                <div class="font-bold text-sm">1934.77T</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LATEST VIDEOS ON YOUTUBE (Screenshot 140300.jpg) -->
+      
+
+                <!-- Video List -->
+            
+                <div>
+                    <h5 class="text-lg font-bold mb-4 uppercase">CATEGORIES</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>BUSINESS</span><span>4242</span></li>
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>CULTURE</span><span>3552</span></li>
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>MARKETS</span><span>2230</span></li>
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>TECHNICAL</span><span>1320</span></li>
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>NEWS</span><span>624</span></li>
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>INDUSTRY EVENTS</span><span>364</span></li>
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>PRESS RELEASES</span><span>281</span></li>
+                        <li class="flex justify-between hover:text-bitcoin-orange cursor-pointer"><span>LEGAL</span><span>200</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Footer Section -->
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center">
+                <!-- About Us -->
+                <div class="lg:w-1/3 mb-6 lg:mb-0">
+                    <div class="flex items-center mb-2">
+                        <svg class="w-6 h-6 mr-2 text-bitcoin-orange" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm.707 12.707a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L9 12.586V7a1 1 0 112 0v5.586l.293-.293a1 1 0 011.414 1.414l-2 2z"></path>
+                        </svg>
+                        <span class="font-black text-2xl">BITCOIN</span>
+                        <span class="text-xs font-bold text-bitcoin-orange ml-1">MAGAZINE</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mt-2">Established in 2012, Bitcoin Magazine is the oldest and most established source of trustworthy news, information and thought leadership on Bitcoin.</p>
+                </div>
+
+                <!-- Follow Us -->
+                <div class="lg:w-1/3 mb-6 lg:mb-0">
+                    <h5 class="text-lg font-bold mb-4 uppercase">FOLLOW US</h5>
+                    <div class="flex space-x-4 text-2xl text-gray-400">
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="hover:text-bitcoin-orange"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright and Legal -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 border-t border-gray-700 pt-4 text-xs flex flex-col sm:flex-row justify-between items-center text-gray-500">
+            <p>© BTC Media, LLC 2025</p>
+            <div class="flex flex-wrap justify-center sm:justify-end space-x-4 mt-2 sm:mt-0">
+                <a href="#" class="hover:text-bitcoin-orange">ADVERTISE</a>
+                <a href="#" class="hover:text-bitcoin-orange">TERMS OF USE</a>
+                <a href="#" class="hover:text-bitcoin-orange">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-bitcoin-orange">JOBS</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
